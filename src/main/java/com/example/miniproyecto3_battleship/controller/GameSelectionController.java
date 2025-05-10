@@ -1,6 +1,6 @@
 package com.example.miniproyecto3_battleship.controller;
 
-import com.example.miniproyecto3_battleship.model.ships.*;
+//import com.example.miniproyecto3_battleship.model.ships.*;
 import com.example.miniproyecto3_battleship.view.GameSelectionStage;
 import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class GameSelectionController {
 
-    @FXML
+    /*@FXML
     private GridPane gridPaneShips;
     @FXML
     private BorderPane gameBorderPane;
@@ -259,6 +259,6 @@ public class GameSelectionController {
                 gridPaneShips.add(shadowShipsSelection[rows - 1][col - 1], col, rows);
             }
         }
-    }
+    } */
 }
 
