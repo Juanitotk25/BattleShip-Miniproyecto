@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="gameBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onHandleBorderPaneKeyTyped" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.GameSelectionController">
+    <right>
+        <AnchorPane fx:id="anchorPaneLeft" prefHeight="1080.0" prefWidth="576.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox fx:id="shipSelectVbox" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="12.0" layoutY="318.0" prefHeight="717.0" prefWidth="486.0" spacing="25.0" style="-fx-background-color: rgba(15, 47, 66,0.5); -fx-border-color: #6a767f; -fx-border-width: 3; -fx-border-radius: 15; -fx-background-radius: 15;">
+                    <children>
+                        <HBox fx:id="hBoxFragatas" alignment="BOTTOM_CENTER" fillHeight="false" prefHeight="77.0" prefWidth="473.0" spacing="25.0">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin></HBox>
+                        <HBox fx:id="hBoxDestructores" alignment="BOTTOM_CENTER" fillHeight="false" prefHeight="116.0" prefWidth="480.0" spacing="55.0">
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                            <padding>
+                                <Insets right="30.0" />
+                            </padding></HBox>
+                        <HBox fx:id="hBoxSubmarinos" alignment="CENTER" fillHeight="false" prefHeight="142.0" prefWidth="480.0" spacing="50.0">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <padding>
+                                <Insets right="40.0" />
+                            </padding></HBox>
+                        <HBox fx:id="hBoxPortaAviones" alignment="CENTER" fillHeight="false" prefHeight="257.0" prefWidth="473.0" spacing="10.0">
+                            <VBox.margin>
+                                <Insets bottom="15.0" />
+                            </VBox.margin></HBox>
+                    </children></VBox>
+                <Label alignment="CENTER" layoutX="101.0" layoutY="235.0" prefHeight="54.0" prefWidth="357.0" style="-fx-background-color: #0f2f42; -fx-border-color: #6a767f; -fx-border-width: 3;" text="Seleccione su barco" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </Label>
+                <Button fx:id="randomButton" layoutX="-13.0" layoutY="294.0" mnemonicParsing="false" onAction="#onHandleRandomButton" prefHeight="75.0" prefWidth="76.0" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <effect>
+                        <ImageInput>
+                            <source>
+                                <Image url="@Image/random_button.png" />
+                            </source>
+                        </ImageInput>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+    </right>
+    <left>
+        <AnchorPane prefHeight="1080.0" prefWidth="431.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2f42" height="47.0" layoutX="106.0" layoutY="94.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="263.0" />
+                <Label fx:id="nameCharacter" layoutX="143.0" layoutY="102.0" prefHeight="33.0" prefWidth="209.0" text="Coronel Sander" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="imgCharacter" fitHeight="289.0" fitWidth="273.0" layoutX="101.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/character1.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="101.0" layoutY="538.0" mnemonicParsing="false" onAction="#onHandleStartGame" prefHeight="70.0" prefWidth="280.0" style="-fx-background-color: #7D3434; -fx-border-radius: 30; -fx-background-radius: 70; -fx-border-width: 3; -fx-border-color: #373F51;" styleClass="buttonRed" stylesheets="@Css/css.css" text="Flota Lista!" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button alignment="CENTER" layoutX="101.0" layoutY="640.0" mnemonicParsing="false" onAction="#onHandleReturn" prefHeight="70.0" prefWidth="280.0" styleClass="buttonReturn" stylesheets="@Css/css.css" text="Abandonar flota" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="25.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane fx:id="anchorPaneMiddle" prefHeight="1080.0" prefWidth="1012.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2e4093" height="636.36" layoutX="195.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="636.36" />
+                <GridPane fx:id="gridPaneShips" layoutX="131.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="700.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="A" textFill="#f2f2f2" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="B" textFill="#f2f2f2" GridPane.columnIndex="2">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="C" textFill="#f2f2f2" GridPane.columnIndex="3">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="D" textFill="#f2f2f2" GridPane.columnIndex="4">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="E" textFill="#f2f2f2" GridPane.columnIndex="5">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="F" textFill="#f2f2f2" GridPane.columnIndex="6">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="G" textFill="#f2f2f2" GridPane.columnIndex="7">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="H" textFill="#f2f2f2" GridPane.columnIndex="8">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="I" textFill="#f2f2f2" GridPane.columnIndex="9">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="J" textFill="#f2f2f2" GridPane.columnIndex="10">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="1" textFill="#f5f5f5" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="2" textFill="#f5f5f5" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="3" textFill="#f5f5f5" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="4" textFill="#f5f5f5" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="5" textFill="#f5f5f5" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="6" textFill="#f5f5f5" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="7" textFill="#f5f5f5" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="8" textFill="#f5f5f5" GridPane.rowIndex="8">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="9" textFill="#f5f5f5" GridPane.rowIndex="9">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="10" textFill="#f5f5f5" GridPane.rowIndex="10">
+                            <font>
+                                <Font name="HotelDeParisXe" size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </GridPane>
+                <Rectangle fx:id="rectangleLabelSelection" arcHeight="5.0" arcWidth="5.0" fill="#7d3434" height="66.0" layoutX="278.0" layoutY="107.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="444.0" />
+                <Label fx:id="lbSelecction" layoutX="369.0" layoutY="116.0" prefHeight="44.0" prefWidth="276.0" text="Selecciona tu flota" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="35.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="rectangleLabelInfo" arcHeight="5.0" arcWidth="5.0" fill="#00000066" height="85.0" layoutX="135.0" layoutY="942.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="764.0" />
+                <Label fx:id="infoLabel" alignment="CENTER" layoutX="141.0" layoutY="941.0" prefHeight="87.0" prefWidth="750.0" textFill="WHITE">
+                    <font>
+                        <Font name="Berlin Sans FB" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

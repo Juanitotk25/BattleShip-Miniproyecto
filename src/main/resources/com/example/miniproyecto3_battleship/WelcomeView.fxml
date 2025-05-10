@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="welcomeBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@Css/css.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.WelcomeController">
+   <left>
+      <VBox alignment="CENTER_LEFT" prefHeight="527.0" prefWidth="244.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="221.0" stylesheets="@Css/css.css">
+               <children>
+                  <ImageView fx:id="img1" fitHeight="30.0" fitWidth="25.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/button_hover_desing.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnContinue" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHandleContinueGame" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: Transparent;" styleClass="label-hover" stylesheets="@Css/css.css" text="Continue" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="HotelDeParis" size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="221.0" stylesheets="@Css/css.css">
+               <children>
+                  <ImageView fx:id="img2" fitHeight="30.0" fitWidth="25.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/button_hover_desing.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnNewGame" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHandlePlayGame" prefHeight="49.0" prefWidth="169.0" style="-fx-background-color: Transparent;" styleClass="label-hover" stylesheets="@Css/css.css" text="New Game" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="HotelDeParis" size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="221.0" stylesheets="@Css/css.css">
+               <children>
+                  <ImageView fx:id="img3" fitHeight="30.0" fitWidth="25.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/button_hover_desing.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnOptions" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="132.0" style="-fx-background-color: Transparent;" styleClass="label-hover" stylesheets="@Css/css.css" text="Options" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="HotelDeParis" size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="221.0" stylesheets="@Css/css.css">
+               <children>
+                  <ImageView fx:id="img4" fitHeight="30.0" fitWidth="25.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/button_hover_desing.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnCredits" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHandleCredits" prefHeight="49.0" prefWidth="123.0" style="-fx-background-color: Transparent;" styleClass="label-hover" stylesheets="@Css/css.css" text="Credits" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="HotelDeParis" size="30.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="2.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="25.0" top="200.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="106.0" prefWidth="1183.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="img5" fitHeight="30.0" fitWidth="25.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/button_hover_desing.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <Button fx:id="btnQuitGame" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHandleQuitGame" prefHeight="49.0" prefWidth="227.0" style="-fx-background-color: Transparent;" styleClass="label-hover" text="Quit Game" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="HotelDeParis" size="30.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets left="-15.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="-5.0" left="-5.0" right="-5.0" top="-10.0" />
+               </padding>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="1023.0" prefWidth="1651.0" stylesheets="@Css/css.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imgCharacter" fitHeight="552.0" fitWidth="540.0" layoutX="1199.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/character1.png" />
+               </image>
+            </ImageView>
+            <ChoiceBox fx:id="choiceBox" layoutX="900.0" layoutY="900.0" prefHeight="75.0" prefWidth="358.0" styleClass="combo-box" stylesheets="@Css/css.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label alignment="CENTER" layoutX="900.0" layoutY="840.0" prefHeight="49.0" prefWidth="360.0" styleClass="labelCharacter" stylesheets="@Css/css.css" text="Seleccione su personaje" textFill="WHITE">
+               <font>
+                  <Font name="Jacquard 12 Regular" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
+
