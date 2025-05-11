@@ -1,5 +1,7 @@
 package com.example.miniproyecto3_battleship.controller;
 
+import com.example.miniproyecto3_battleship.view.GameSelectionStage;
+import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.Objects;
 
 public class WelcomeController {
@@ -44,7 +48,7 @@ public class WelcomeController {
 
     @FXML
     public void initialize() {
-        // Sets the background image for the welcome screen.
+        // Configura la imagen de fondo para la pantalla de bienvenida
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
         BackgroundImage background = new BackgroundImage(
                 backgroundImage,
@@ -55,26 +59,26 @@ public class WelcomeController {
         );
         welcomeBorderPane.setBackground(new Background(background));
 
-        // Set the characters in the ChoiceBox
+        // Configura los personajes en el ChoiceBox
         choiceBox.getItems().addAll(
                 "Thrall", "Jaina Proudmoore", "Sylvanas Windrunner", "Anduin Wrynn", "Gul'dan", "Illidan Stormrage"
         );
-        choiceBox.setValue("Thrall"); // Set a default value
+        choiceBox.setValue("Thrall"); // Establece un valor predeterminado
 
-        // Set up the action for each button
+        // Configura las acciones para cada botón
         btnContinue.setOnAction(this::onHandleContinueGame);
         btnNewGame.setOnAction(this::onHandlePlayGame);
         btnOptions.setOnAction(this::onHandleOptions);
         btnCredits.setOnAction(this::onHandleCredits);
         btnQuitGame.setOnAction(this::onHandleQuitGame);
 
-        // Add a listener for the ChoiceBox selection change
+        // Agrega un listener al cambio de selección del ChoiceBox
         choiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectionCharacter(newValue);  // Update the character image when a new character is selected
+            selectionCharacter(newValue);  // Actualiza la imagen del personaje cuando se selecciona uno nuevo
         });
     }
 
-    // Method to update the character image based on the selected character
+    // Método para actualizar la imagen del personaje basado en la selección
     private void selectionCharacter(String selectedCharacter) {
         Image characterImage = null;
 
@@ -94,54 +98,70 @@ public class WelcomeController {
         }
 
         if (characterImage != null) {
-            imgCharacter.setImage(characterImage);  // Set the new image in the ImageView
+            imgCharacter.setImage(characterImage);  // Establece la nueva imagen en el ImageView
         } else {
-            System.out.println("Error: Image for " + selectedCharacter + " not found.");
+            System.out.println("Error: Imagen para " + selectedCharacter + " no encontrada.");
         }
     }
 
-    // Action for "Continuar" button
+    // Acción para el botón "Continuar"
     @FXML
     private void onHandleContinueGame(ActionEvent event) {
         String selectedCharacter = choiceBox.getValue();
         System.out.println("Seleccionaste el personaje: " + selectedCharacter);
-        // Logic to continue with the selected character
-        // You can transition to the game scene or logic here
+        // Aquí podrías agregar la lógica para continuar el juego con el personaje seleccionado
+        // Por ejemplo, cargar el progreso guardado y continuar con la etapa del juego
+        // GameStage.getInstance(); // Pasar a la siguiente pantalla de juego
     }
 
-    // Action for "Nuevo Juego" button
+    // Acción para el botón "Nuevo Juego"
     @FXML
     private void onHandlePlayGame(ActionEvent event) {
         System.out.println("Nuevo juego iniciado!");
-        // Logic for starting a new game
-        // Reset game variables, clear settings, etc.
+        // Aquí deberías inicializar el juego desde cero
+        // Resetear variables del juego, limpiar configuraciones, etc.
+        WelcomeStage.deleteInstance();  // Cierra la ventana de bienvenida
+
+        // Asegúrate de que GameSelectionStage se cargue correctamente
+        try {
+            GameSelectionStage.getInstance();  // Llama a la selección de juego
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    // Action for "Opciones" button
+    // Acción para el botón "Opciones"
     @FXML
     private void onHandleOptions(ActionEvent event) {
         System.out.println("Abrir opciones...");
-        // Logic for opening game options
-        // Show options screen or dialog
+        // Aquí deberías agregar la lógica para abrir una pantalla de opciones
+        // Por ejemplo, mostrar una ventana con opciones de configuración del juego (como sonido, dificultad, controles)
     }
 
-    // Action for "Créditos" button
+    // Acción para el botón "Créditos"
     @FXML
     private void onHandleCredits(ActionEvent event) {
         System.out.println("Mostrar créditos...");
-        // Logic for showing credits
-        // Open a credits window or display information
+        // Aquí deberías mostrar una ventana con los créditos del juego
+        // Puedes usar un `Alert` o crear una nueva ventana que muestre los nombres de los desarrolladores
+        // Ejemplo de cómo podrías hacerlo:
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Créditos");
+        alert.setHeaderText("Desarrollado por:");
+        alert.setContentText("Samuel Arenas, Nicolás Córdoba, Juan Manuel Ampudia");
+        alert.showAndWait();
     }
 
-    // Action for "Salir del juego" button
+    // Acción para el botón "Salir del juego"
     @FXML
     private void onHandleQuitGame(ActionEvent event) {
         System.out.println("Salir del juego...");
-        // Logic to quit the game or close the window
+        // Lógica para salir del juego o cerrar la ventana
         Stage stage = (Stage) btnQuitGame.getScene().getWindow();
-        stage.close(); // Close the window
+        stage.close();  // Cierra la ventana del juego
     }
 }
+
 
 
 

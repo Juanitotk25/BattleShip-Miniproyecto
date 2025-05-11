@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="welcomeBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@Css/css.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.WelcomeController">
+<BorderPane fx:id="welcomeBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@Css/css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.WelcomeController">
    <left>
       <VBox alignment="CENTER_LEFT" prefHeight="527.0" prefWidth="244.0" BorderPane.alignment="CENTER">
          <children>
@@ -137,17 +137,17 @@
    <center>
       <AnchorPane prefHeight="1023.0" prefWidth="1651.0" stylesheets="@Css/css.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imgCharacter" fitHeight="552.0" fitWidth="540.0" layoutX="1199.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCharacter" fitHeight="323.0" fitWidth="197.0" layoutX="830.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/character1.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="choiceBox" layoutX="900.0" layoutY="900.0" prefHeight="75.0" prefWidth="358.0" styleClass="combo-box" stylesheets="@Css/css.css">
+            <ChoiceBox fx:id="choiceBox" layoutX="381.0" layoutY="687.0" prefHeight="75.0" prefWidth="358.0" styleClass="combo-box" stylesheets="@Css/css.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Label alignment="CENTER" layoutX="900.0" layoutY="840.0" prefHeight="49.0" prefWidth="360.0" styleClass="labelCharacter" stylesheets="@Css/css.css" text="Seleccione su personaje" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="380.0" layoutY="597.0" prefHeight="49.0" prefWidth="360.0" styleClass="labelCharacter" stylesheets="@Css/css.css" text="Seleccione su personaje" textFill="WHITE">
                <font>
                   <Font name="Jacquard 12 Regular" size="35.0" />
                </font>
@@ -156,4 +156,3 @@
       </AnchorPane>
    </center>
 </BorderPane>
-
