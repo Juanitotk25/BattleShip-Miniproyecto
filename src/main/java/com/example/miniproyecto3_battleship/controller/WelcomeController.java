@@ -148,7 +148,7 @@ public class WelcomeController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Créditos");
         alert.setHeaderText("Desarrollado por:");
-        alert.setContentText("Samuel Arenas, Nicolás Córdoba, Juan Manuel Ampudia");
+        alert.setContentText("Juan David Lopez Vanegas");
         alert.showAndWait();
     }
 
