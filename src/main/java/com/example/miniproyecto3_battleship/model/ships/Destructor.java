@@ -14,15 +14,15 @@ import java.util.Objects;
 public class Destructor extends Ship {
 
     public Destructor() {
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture2.png")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture2.png")));
         ImagePattern imagePattern = new ImagePattern(image);
-        Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture5.png")));
+        Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture5.png")));
         ImagePattern imagePattern2 = new ImagePattern(image2);
-        Image image5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture1.png")));
+        Image image5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture1.png")));
         ImagePattern imagePattern5 = new ImagePattern(image5);
-        Image image7 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/textureFragata1.png")));
+        Image image7 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wowtextureFragata1.png")));
         ImagePattern imagePattern7 = new ImagePattern(image7);
-        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture2.png")));
+        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture2.png")));
         ImagePattern imagePattern3 = new ImagePattern(image3);
 
         Rectangle rectangle1 = new Rectangle(51, 30, 27, 78);
@@ -69,7 +69,7 @@ public class Destructor extends Ship {
         rectangle2.setArcWidth(5);
         rectangle2.setArcHeight(5);
         rectangle2.setStroke(Color.BLACK);
-        Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture6.png")));
+        Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture6.png")));
         ImagePattern imagePattern4 = new ImagePattern(image4);
         rectangle2.setFill(imagePattern4);
 
@@ -151,7 +151,7 @@ public class Destructor extends Ship {
         Rectangle rectangle5 = new Rectangle(57, 15, 4, 10);
         rectangle5.setArcWidth(5);
         rectangle5.setStroke(Color.BLACK);
-        Image image6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/texture4.png")));
+        Image image6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture4.png")));
         ImagePattern imagePattern6 = new ImagePattern(image6);
         rectangle5.setFill(imagePattern6);
 
