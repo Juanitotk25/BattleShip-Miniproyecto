@@ -4,67 +4,41 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
-/**
- * Represents the contract for all ship types in the Battleship game.
- * <p>This interface defines the methods required for managing the visual representation,
- * orientation, placement, and status of ships in the game.</p>
- *
- * @author Juan David Lopez Vanegas
- */
+
 public interface IShip {
+    void selectDesing();
 
-    void selectDesign();
-
-    void restoreDesign();
+    void originDesing();
 
     void rotateShip();
 
-    void setOrientation(boolean isHorizontal);
+    void setIsHorizontal(boolean isHorizontal);
 
     void setPosition(int x, int y);
 
+
     int[] getPosition();
 
-    boolean isSelected();
+    boolean isSelect();
 
     int getSize();
 
     boolean isPlaced();
 
-    void setPlaced(boolean isPlaced);
+    void setIsPlaced(boolean isPlaced);
 
     boolean isHorizontal();
 
-    boolean canRotate();
+    void setPotentialRotate(boolean potentialRotate);
 
-    void setCanRotate(boolean canRotate);
+    boolean potentialRotate();
 
-    /**
-     * Updates the selection status of the ship.
-     *
-     * @param isSelected true if the ship is selected, false otherwise.
-     */
-    void setSelected(boolean isSelected);
+    void setIsSelect(boolean isSelect);
 
-    /**
-     * Scales the ship's visual representation.
-     *
-     * @param scaleX the scale factor for the X-axis (width).
-     * @param scaleY the scale factor for the Y-axis (height).
-     */
-    void setScale(double scaleX, double scaleY);
+    void setScaleShip(double X, double Y);
 
-    /**
-     * Sets the destruction status of the ship.
-     *
-     * @param isDestroyed true if the ship is destroyed, false otherwise.
-     */
-    void setDestroyed(boolean isDestroyed);
+    void setIsDestroyed(boolean isDestroyed);
 
-    /**
-     * Checks if the ship is destroyed.
-     *
-     * @return true if the ship is destroyed, false otherwise.
-     */
     boolean isDestroyed();
+
 }

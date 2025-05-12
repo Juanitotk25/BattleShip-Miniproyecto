@@ -19,34 +19,18 @@ import java.io.Serializable;
  *
  * @author Juan David Lopez Vanegas
  */
-public class Ship extends Pane implements IShip {
-
-    // Group that holds the visual representation of the ship
+public class Ship extends Pane implements IShip{
     protected Group shapesGroup = new Group();
-    // A Rectangle representing the body of the ship
     protected Rectangle body = new Rectangle();
-
-    // Flags to manage the ship's state
-    protected boolean isSelect;
-    protected boolean isHorizontal = true;  // Default orientation is horizontal
     protected int size;
     protected boolean potentialRotate = true;
-    protected int[] position = new int[2];  // x and y position
+    protected int[] position = new int[2];
     protected boolean isPlaced = false;
     protected boolean isDestroyed = false;
+    protected boolean isSelect;
+    protected boolean isHorizontal = true;
 
-    // Constructor to initialize the ship's size
-    public Ship(int size) {
-        this.size = size;
-        body.setWidth(100);  // Set default width
-        body.setHeight(20);  // Set default height
-        this.getChildren().add(body);
-        shapesGroup.getChildren().add(body);
-    }
-
-    // Apply a glowing effect to the ship to indicate selection
-    @Override
-    public void selectDesign() {
+    public void selectDesing() {
         DropShadow glow = new DropShadow();
         glow.setColor(Color.WHITE);
         glow.setRadius(15);
@@ -55,9 +39,7 @@ public class Ship extends Pane implements IShip {
         isSelect = true;
     }
 
-    // Restore the ship's original design and remove the selection effect
-    @Override
-    public void restoreDesign() {
+    public void originDesing() {
         DropShadow glow = new DropShadow();
         glow.setColor(Color.CADETBLUE);
         glow.setRadius(10);
@@ -69,104 +51,76 @@ public class Ship extends Pane implements IShip {
         isSelect = false;
     }
 
-    // Rotate the ship by 90 degrees (horizontal to vertical, and vice versa)
-    @Override
     public void rotateShip() {
-        if (isHorizontal) {
+        if(isHorizontal) {
             this.setRotate(90);
             isHorizontal = false;
-        } else {
+        }else{
             this.setRotate(0);
             isHorizontal = true;
         }
     }
 
-    // Set the orientation of the ship (horizontal or vertical)
-    @Override
-    public void setOrientation(boolean isHorizontal) {
-        this.isHorizontal = isHorizontal;
-    }
 
-    // Set the position of the ship on the board (x, y coordinates)
-    @Override
     public void setPosition(int x, int y) {
         position[0] = x;
         position[1] = y;
     }
 
-    // Get the current position of the ship
-    @Override
+    public void setIsHorizontal(boolean isHorizontal){
+        this.isHorizontal = isHorizontal;
+    }
+
+    public void setIsPlaced(boolean isPlaced){
+        this.isPlaced = isPlaced;
+    }
+
+    public boolean isPlaced(){
+        return isPlaced;
+    }
+
     public int[] getPosition() {
         return position;
     }
 
-    // Check if the ship is selected
-    @Override
-    public boolean isSelected() {
+    public boolean isSelect() {
         return isSelect;
     }
 
-    // Get the size of the ship (number of cells it occupies)
-    @Override
     public int getSize() {
         return size;
     }
 
-    // Check if the ship has been placed on the board
-    @Override
-    public boolean isPlaced() {
-        return isPlaced;
-    }
-
-    // Set whether the ship is placed on the board or not
-    @Override
-    public void setPlaced(boolean isPlaced) {
-        this.isPlaced = isPlaced;
-    }
-
-    // Check if the ship is oriented horizontally
-    @Override
-    public boolean isHorizontal() {
-        return isHorizontal;
-    }
-
-    // Set whether the ship can potentially be rotated or not
-    @Override
-    public void setCanRotate(boolean canRotate) {
-        this.potentialRotate = canRotate;
-    }
-
-    // Check if the ship can potentially be rotated
-    @Override
-    public boolean canRotate() {
+    public boolean potentialRotate(){
         return potentialRotate;
     }
 
-    // Set the selection status of the ship
-    @Override
-    public void setSelected(boolean isSelected) {
-        this.isSelect = isSelected;
+    public boolean isHorizontal(){
+        return isHorizontal;
     }
 
-    // Set the scale of the ship for rendering
-    @Override
-    public void setScale(double scaleX, double scaleY) {
-        shapesGroup.setScaleX(scaleX);
-        shapesGroup.setScaleY(scaleY);
-        body.setScaleX(scaleX);
-        body.setScaleY(scaleY);
+    public void setPotentialRotate(boolean potentialRotate){
+        this.potentialRotate = potentialRotate;
     }
 
-    // Set the destruction status of the ship
-    @Override
-    public void setDestroyed(boolean isDestroyed) {
+    public void setIsSelect(boolean isSelect){
+        this.isSelect = isSelect;
+    }
+
+    public void setScaleShip(double X, double Y){
+        shapesGroup.setScaleX(X);
+        shapesGroup.setScaleY(Y);
+        body.setScaleX(X);
+        body.setScaleY(Y);
+    }
+
+    public void setIsDestroyed(boolean isDestroyed){
         this.isDestroyed = isDestroyed;
     }
 
-    // Check if the ship has been destroyed
-    @Override
-    public boolean isDestroyed() {
+    public boolean isDestroyed(){
         return isDestroyed;
     }
+
 }
 
