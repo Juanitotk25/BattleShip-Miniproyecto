@@ -22,6 +22,7 @@ public abstract class APlayer implements IPlayer {
 
     @Override
     public ArrayList<ArrayList<Integer>> getMatrix() {
+        return shipsMatrix;
     }
 
     @Override
