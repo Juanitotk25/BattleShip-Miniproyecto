@@ -3,6 +3,7 @@ package com.example.miniproyecto3_battleship.controller;
 import com.example.miniproyecto3_battleship.view.GameSelectionStage;
 import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
+import com.example.miniproyecto3_battleship.model.ships.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
 
 public class GameSelectionController {
 
@@ -43,6 +46,15 @@ public class GameSelectionController {
     private Button returnButton;
     @FXML
     private Button randomButton;  // Este es el botón "Random"
+
+    Fragata[] fragatas = new Fragata[4];
+    Destructor[] destructores = new Destructor[3];
+    Submarino[] submarinos = new Submarino[2];
+    Portaaviones[] portaaviones = new Portaaviones[1];
+    ArrayList<Ship> ships = new ArrayList<>();
+    ArrayList<int[]> shipsPosition = new ArrayList<>();
+
+
 
     // Método de inicialización
     @FXML
