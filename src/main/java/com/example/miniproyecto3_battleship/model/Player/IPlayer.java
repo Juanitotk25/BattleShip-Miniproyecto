@@ -23,6 +23,6 @@ public interface IPlayer extends Serializable {
     boolean verifyWinner();
     void setEnemyShipsInfo(ArrayList<int[]> enemyShipsInfo);
     void generatePositionRandom(ArrayList<ArrayList<Integer>> matrix);
-    int getPositionRandom();
+    int[] getPositionRandom();
     ArrayList<Ship> getEnemyShips();
 }

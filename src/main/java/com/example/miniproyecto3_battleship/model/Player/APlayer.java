@@ -43,17 +43,35 @@ public abstract class APlayer implements IPlayer {
     @Override
     public void botIntelligence(ArrayList<ArrayList<Integer>> matrix){}
 
+    //recorre la matrix bidimensional e imprime
+    public void showMatrix(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                System.out.print(shipsMatrix.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
 
-    public void showMatrix(){}
 
-    public boolean verifyWinner(){}
+    public boolean verifyWinner(){
+        int counter = 0;
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(shipsMatrix.get(i).get(j) == -1){
+                    counter++;
+                }
+            }
+        }
+        return counter == 20;
+    }
 
     public void setEnemyShipsInfo(ArrayList<int[]> enemyShipsInfo){}
 
     public void generatePositionRandom(ArrayList<ArrayList<Integer>> matrix){}
 
 
-    public int getPositionRandom(){}
+    public int[] getPositionRandom(){return new int[2]; }
 
-    public ArrayList<Ship> getEnemyShips(){}
+    public ArrayList<Ship> getEnemyShips(){return new ArrayList<>(); }
 }
