@@ -73,5 +73,7 @@ public abstract class APlayer implements IPlayer {
 
     public int[] getPositionRandom(){return new int[2]; }
 
-    public ArrayList<Ship> getEnemyShips(){return new ArrayList<>(); }
+    public ArrayList<Ship> getEnemyShips(){
+        return new ArrayList<>();
+    }
 }
