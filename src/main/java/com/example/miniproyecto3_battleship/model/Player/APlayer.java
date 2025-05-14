@@ -26,12 +26,12 @@ public abstract class APlayer implements IPlayer {
     }
 
     @Override
-    public void clearMatrix() {
-    }
+    public void clearMatrix() {}
 
 
     @Override
     public void changeMatrix(int row, int col, int value) {
+        shipsMatrix.get(row).set(col, value);
     }
 
     @Override
