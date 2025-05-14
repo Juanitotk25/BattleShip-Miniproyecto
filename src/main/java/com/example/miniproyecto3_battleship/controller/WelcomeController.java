@@ -51,6 +51,7 @@ public class WelcomeController {
 
     @FXML
     public void initialize() {
+        plainTextFileHandler = new PlainTextFileHandler();
         // Configura la imagen de fondo para la pantalla de bienvenida
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
         BackgroundImage background = new BackgroundImage(
@@ -120,6 +121,8 @@ public class WelcomeController {
     // Acción para el botón "Nuevo Juego"
     @FXML
     private void onHandlePlayGame(ActionEvent event) {
+        //Llama al metetodo writeToFile para guardar en character.txt con el formato definido
+        plainTextFileHandler.writeToFile("character.txt", nameCharacter + "," + " " + "," + "0");
         System.out.println("Nuevo juego iniciado!");
         // Aquí deberías inicializar el juego desde cero
         // Resetear variables del juego, limpiar configuraciones, etc.
