@@ -54,7 +54,10 @@ public class GameSelectionController {
     ArrayList<Ship> ships = new ArrayList<>();
     ArrayList<int[]> shipsPosition = new ArrayList<>();
 
-
+    private Ship shipSelected;
+    private final int[][] shipsSelected = new int[10][10];
+    private final int[][] positionsHeadShips = new int[10][10];
+    private boolean habitable;
 
     // Método de inicialización
     @FXML
