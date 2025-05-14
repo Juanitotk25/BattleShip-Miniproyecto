@@ -1,5 +1,6 @@
 package com.example.miniproyecto3_battleship.controller;
 
+import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
 import com.example.miniproyecto3_battleship.view.GameSelectionStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import javafx.event.ActionEvent;
@@ -45,6 +46,8 @@ public class WelcomeController {
     private ImageView imgCharacter;
 
     private String nameCharacter;
+
+    private PlainTextFileHandler plainTextFileHandler;
 
     @FXML
     public void initialize() {
