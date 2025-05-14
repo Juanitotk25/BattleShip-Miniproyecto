@@ -18,5 +18,5 @@ public interface IGame extends Serializable {
     PlayerPerson getPlayerPerson();
 
     //verifica si el jguador ha ganado y retorna true si ganó
-    Boolean verifyWinner(IPlayer player);
+    boolean verifyWinner(IPlayer player);
 }
