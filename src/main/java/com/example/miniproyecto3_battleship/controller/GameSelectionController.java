@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -81,6 +82,10 @@ public class GameSelectionController {
     private Button randomButton;
 
     private final Rectangle[][] shadowShipsSelection = new Rectangle[10][10];
+
+    private int actualShadowRow;
+
+    private int actualShadowCol;
 
     // Método de inicialización
     @FXML
@@ -180,12 +185,50 @@ public class GameSelectionController {
         }
     }
 
-
-    // Método vacío para que no lance errores de compilación
     @FXML
-    public void onHandleBorderPaneKeyTyped() {
-        // Este es un método vacío que se requiere para evitar errores de compilación
+    void onHandleBorderPaneKeyTyped(KeyEvent event) {
+        if (event.getCharacter().equalsIgnoreCase("R") && shipSelected != null) {
+            if (!shipSelected.isPlaced()) {
+                shipSelected.rotateShip();
+                shipSelected.setPotentialRotate(!shipSelected.potentialRotate());
+            } else {
+                shipSelected.setPotentialRotate(!shipSelected.potentialRotate());
+            }
+            if (actualShadowCol != -1) {
+                for (int i = 0; i < shadowShipsSelection.length; i++) {
+                    for (int j = 0; j < shadowShipsSelection[i].length; j++) {
+                        shadowShipsSelection[i][j].setFill(Color.TRANSPARENT);
+                    }
+                }
+                onHandleMouseEnteredShips(actualShadowRow, actualShadowCol);
+            }
+        }
     }
+
+
+
+
+    @FXML
+    void createShadowShip() {
+        double cellWidth = 63.7;
+        double cellHeight = 63.7;
+        gridPaneShips.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto_3_battlership/Css/css.css")).toExternalForm());
+        for (int rows = 1; rows <= 10; rows++) {
+            for (int col = 1; col <= 10; col++) {
+                Rectangle cell = new Rectangle(cellWidth, cellHeight);
+                cell.setFill(Color.TRANSPARENT);
+                cell.getStyleClass().add("cell");
+                shadowShipsSelection[rows - 1][col - 1] = cell;
+                int finalRows = rows - 1;
+                int finalCol = col - 1;
+                shadowShipsSelection[rows - 1][col - 1].setOnMouseEntered(e -> onHandleMouseEnteredShips(finalRows, finalCol));
+                shadowShipsSelection[rows - 1][col - 1].setOnMouseExited(e -> onHandleMouseExitedShips(finalRows, finalCol));
+                shadowShipsSelection[rows - 1][col - 1].setOnMouseClicked(e -> onHandleMouseClickedShips(finalRows, finalCol));
+                gridPaneShips.add(shadowShipsSelection[rows - 1][col - 1], col, rows);
+            }
+        }
+    }
+
 }
 
 
