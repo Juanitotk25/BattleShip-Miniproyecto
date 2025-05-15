@@ -44,21 +44,22 @@ public class GameSelectionStage extends Stage {
         show();
     }
 
-    private static class GameSelectionStageHolder {
+    private static class GameStageHolder {
         private static GameSelectionStage INSTANCE;
     }
 
     // Método para obtener una instancia única de GameSelectionStage
     public static GameSelectionStage getInstance() throws IOException {
-        if (GameSelectionStageHolder.INSTANCE == null) {
-            GameSelectionStageHolder.INSTANCE = new GameSelectionStage();
-        }
-        return GameSelectionStageHolder.INSTANCE;
+        GameSelectionStage.GameStageHolder.INSTANCE =
+                GameSelectionStage.GameStageHolder.INSTANCE != null ?
+                        GameSelectionStage.GameStageHolder.INSTANCE : new GameSelectionStage();
+        return GameSelectionStage.GameStageHolder.INSTANCE;
     }
+
 
     // Método para cerrar la instancia de GameSelectionStage
     public static void deleteInstance() {
-        GameSelectionStageHolder.INSTANCE.close();
-        GameSelectionStageHolder.INSTANCE = null;
+        GameSelectionStage.GameStageHolder.INSTANCE.close();
+        GameSelectionStage.GameStageHolder.INSTANCE = null;
     }
 }
