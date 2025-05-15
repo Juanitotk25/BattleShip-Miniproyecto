@@ -89,6 +89,7 @@ public class GameSelectionController {
     private int actualShadowCol;
 
     private Color colorhover = Color.rgb(0, 0, 0, 0.5);
+    private Color colorDefault = Color.TRANSPARENT;
 
     // Método de inicialización
     @FXML
@@ -279,6 +280,32 @@ public class GameSelectionController {
             onHandleMouseEnteredShips(actualShadowRow, actualShadowCol);
         }
     }
+
+    private void onHandleMouseExitedShips(int row, int col) {
+        actualShadowCol = -1;
+        actualShadowRow = -1;
+        if (shipSelected != null) {
+            colorDefault = Color.TRANSPARENT;
+            try {
+                if ((shipSelected.isHorizontal() && !shipSelected.isPlaced()) || shipSelected.potentialRotate()) {
+                    for (int i = 1; i <= shipSelected.getSize(); i++) {
+                        shadowShipsSelection[row][col - (i - 1)].setFill(colorDefault);
+                    }
+                } else {
+                    for (int i = 1; i <= shipSelected.getSize(); i++) {
+                        shadowShipsSelection[row - (i - 1)][col].setFill(colorDefault);
+                    }
+                }
+            } catch (ArrayIndexOutOfBoundsException x) {
+
+                System.out.println("Error en la grilla");
+
+            }
+        }
+
+    }
+
+
 
 
     @FXML
