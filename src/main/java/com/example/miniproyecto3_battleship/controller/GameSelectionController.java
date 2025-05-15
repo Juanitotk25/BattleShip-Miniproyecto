@@ -106,6 +106,40 @@ public class GameSelectionController {
         );
         gameBorderPane.setBackground(new Background(background));
 
+        createShadowShip();
+
+        for (int i = 0; i < 4; i++) {
+            fragatas[i] = new Fragata();
+            int finalI = i;
+            fragatas[i].setOnMouseClicked(e -> shipSelected(fragatas[finalI]));
+            hBoxFragatas.getChildren().add(fragatas[i]);
+            ships.add(fragatas[i]);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            destructores[i] = new Destructor();
+            int finalI = i;
+            destructores[i].setOnMouseClicked(e -> shipSelected(destructores[finalI]));
+            hBoxDestructores.getChildren().add(destructores[i]);
+            ships.add(destructores[i]);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            submarinos[i] = new Submarino();
+            int finalI = i;
+            submarinos[i].setOnMouseClicked(e -> shipSelected(submarinos[finalI]));
+            hBoxSubmarinos.getChildren().add(submarinos[i]);
+            ships.add(submarinos[i]);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            portaaviones[i] = new Portaaviones();
+            int finalI = i;
+            portaaviones[i].setOnMouseClicked(e -> shipSelected(portaaviones[finalI]));
+            hBoxPortaAviones.getChildren().add(portaaviones[i]);
+            ships.add(portaaviones[i]);
+        }
+
         infoLabel.setText("Teniente seleccione sus barcos");
         setCharacter();
     }
