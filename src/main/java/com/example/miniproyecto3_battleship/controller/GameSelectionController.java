@@ -354,7 +354,7 @@ public class GameSelectionController {
         }
     }
 
-
+    // crea sombras a los barcos seleccionados para ver donde se ubicarán
     @FXML
     void createShadowShip() {
         double cellWidth = 63.7;
@@ -374,6 +374,69 @@ public class GameSelectionController {
                 gridPaneShips.add(shadowShipsSelection[rows - 1][col - 1], col, rows);
             }
         }
+    }
+
+    //este metodo devuelve las sombras en las grillas a su estado pro defecto
+    public void resetShadow() {
+        for (Rectangle[] rectangle : shadowShipsSelection) {
+            for (Rectangle r : rectangle) {
+                r.setFill(colorDefault);
+            }
+        }
+    }
+
+    //lógica del botón de random, hace que las posicioens de los barcos se organicen
+    //de forma aleatoria, es decir, estrategicamente
+    @FXML
+    public void onHandleRandomButton() {
+
+        RotateTransition rotateTransition = new RotateTransition();
+        rotateTransition.setNode(randomButton);
+        rotateTransition.setCycleCount(1);
+        rotateTransition.setDuration(Duration.seconds(.5));
+
+        Random rand = new Random();
+        int randomRotation = rand.nextInt(360) + 360 * 3;
+
+        rotateTransition.setByAngle(randomRotation);
+        rotateTransition.setAutoReverse(true);
+
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(randomButton);
+        translateTransition.setCycleCount(2);
+        translateTransition.setDuration(Duration.seconds(0.1));
+
+        translateTransition.setByX(10);
+        translateTransition.setAutoReverse(true);
+
+        translateTransition.play();
+        rotateTransition.play();
+
+        rotateTransition.setOnFinished(event2 -> {
+            int randomRow, randomCol, randomHorientation;
+            if (shipSelected != null) {
+                shipSelected(shipSelected);
+            }
+            for (int i = 0; i < ships.size(); i++) {
+                shipSelected(ships.get(i));
+                do {
+                    randomRow = (int) (Math.random() * 9);
+                    randomCol = (int) (Math.random() * 9);
+                    randomHorientation = (int) (Math.random() * 1);
+                    if (randomHorientation == 0) {
+                        onHandleBorderPaneKeyTyped2();
+                    }
+                    onHandleMouseEnteredShips(randomRow, randomCol);
+                    onHandleMouseClickedShips(randomRow, randomCol);
+                    onHandleMouseExitedShips(randomRow, randomCol);
+
+                } while (!shipSelected.isPlaced() && !habitable);
+                shipSelected(shipSelected);
+            }
+            resetShadow();
+            infoLabel.setText("Teniente se pusieron sus barcos de manera estrategica");
+
+        });
     }
 
 }
