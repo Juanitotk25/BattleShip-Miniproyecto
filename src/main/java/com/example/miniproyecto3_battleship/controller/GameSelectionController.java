@@ -21,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -148,17 +149,27 @@ public class GameSelectionController {
 
     // Acción para "Flota Lista!"
     @FXML
-    public void onHandleStartGame(ActionEvent event) {
-        System.out.println("Flota lista. Iniciando juego...");
+    void onHandleStartGame(ActionEvent event) throws IOException {
 
-        // Aquí realizamos la transición a GameStage (la pantalla de juego)
-        try {
-            // Cerramos el GameSelectionStage
-            GameSelectionStage.deleteInstance(); // Asegúrate de que este método esté implementado correctamente
-            GameStage.getInstance(); // Aquí deberías cargar la pantalla del juego (GameStage)
-        } catch (Exception e) {
-            e.printStackTrace();
+        int totalSum = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (shipsSelected[i][j] != 0) {
+                    totalSum++;
+                }
+            }
         }
+
+        if (totalSum != 20) {
+            infoLabel.setText("Teniente debe seleccionar todos los barcos antes de poder ir a la batalla");
+            return;
+        }
+        rectangleLabelInfo.setOpacity(0);
+        infoLabel.setOpacity(0);
+        rectangleLabelSelection.setOpacity(0);
+        lbSelecction.setOpacity(0);
+
+        shipPositions();
     }
 
     // Acción para "Abandonar flota"
