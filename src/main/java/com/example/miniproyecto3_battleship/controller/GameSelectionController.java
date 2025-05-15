@@ -404,7 +404,7 @@ public class GameSelectionController {
     void createShadowShip() {
         double cellWidth = 63.7;
         double cellHeight = 63.7;
-        gridPaneShips.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto_3_battlership/Css/css.css")).toExternalForm());
+        gridPaneShips.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto3_battleship/Css/css.css")).toExternalForm());
         for (int rows = 1; rows <= 10; rows++) {
             for (int col = 1; col <= 10; col++) {
                 Rectangle cell = new Rectangle(cellWidth, cellHeight);
