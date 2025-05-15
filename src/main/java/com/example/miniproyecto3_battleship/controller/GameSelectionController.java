@@ -4,9 +4,11 @@ import com.example.miniproyecto3_battleship.view.GameSelectionStage;
 import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import com.example.miniproyecto3_battleship.model.ships.*;
+import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameSelectionController {
 
@@ -40,13 +43,6 @@ public class GameSelectionController {
     @FXML
     private Rectangle rectangleLabelSelection;
 
-    @FXML
-    private Button startGameButton;
-    @FXML
-    private Button returnButton;
-    @FXML
-    private Button randomButton;  // Este es el botón "Random"
-
     Fragata[] fragatas = new Fragata[4];
     Destructor[] destructores = new Destructor[3];
     Submarino[] submarinos = new Submarino[2];
@@ -55,9 +51,35 @@ public class GameSelectionController {
     ArrayList<int[]> shipsPosition = new ArrayList<>();
 
     private Ship shipSelected;
+
     private final int[][] shipsSelected = new int[10][10];
+
     private final int[][] positionsHeadShips = new int[10][10];
+
     private boolean habitable;
+
+    @FXML
+    private HBox hBoxDestructores;
+
+    @FXML
+    private HBox hBoxFragatas;
+
+    @FXML
+    private AnchorPane anchorPaneLeft;
+
+    @FXML
+    private AnchorPane anchorPaneMiddle;
+
+    @FXML
+    private Label nameCharacter;
+
+    @FXML
+    private ImageView imgCharacter;
+
+    @FXML
+    private Button randomButton;
+
+    private final Rectangle[][] shadowShipsSelection = new Rectangle[10][10];
 
     // Método de inicialización
     @FXML
@@ -73,21 +95,32 @@ public class GameSelectionController {
         );
         gameBorderPane.setBackground(new Background(background));
 
-        // Asignar la funcionalidad a los botones
-        //addButtonFunctionality();
+        infoLabel.setText("Teniente seleccione sus barcos");
+        setCharacter();
     }
 
-    // Asignar la lógica a los botones
-    /*private void addButtonFunctionality() {
-        // Botón para comenzar el juego
-        startGameButton.setOnAction(this::onHandleStartGame);
-
-        // Botón para regresar a la pantalla anterior (o menú principal)
-        returnButton.setOnAction(this::onHandleReturn);
-
-        // Botón para generar un random
-        randomButton.setOnAction(this::onHandleRandomButton);  // Asegúrate de que este método exista
-    }*/
+    public void setCharacter() {
+        PlainTextFileHandler plainTextFileHandler = new PlainTextFileHandler();
+        String[] data = plainTextFileHandler.readFromFile("character.txt");
+        String nameCharacterActual = data[0];
+        Image imageCharacterActual;
+        nameCharacter.setText(nameCharacterActual);
+        if (Objects.equals(nameCharacterActual, "Thrall")) {
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character1.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Jaina Proudmoore")) {
+            nameCharacter.setStyle("-fx-font-size: 25; -fx-font-family: 'Berlin Sans FB'");
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character2.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Sylvanas WindRunner")) {
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character3.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Anduin Wrynn")) {
+            nameCharacter.setStyle("-fx-font-size: 25; -fx-font-family: 'Berlin Sans FB'");
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character4.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        }
+    }
 
     // Acción para "Flota Lista!"
     @FXML
