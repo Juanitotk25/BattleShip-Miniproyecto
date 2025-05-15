@@ -305,7 +305,54 @@ public class GameSelectionController {
 
     }
 
+    //Permite que maneje el evento de click cuando una celda de la grilla es clickeada para posicionamiento
+    //coloca el barco de acuerdo a su orientación y posición
+    public void onHandleMouseClickedShips(int row, int col) {
+        row += 1;
+        col += 1;
 
+        if (shipSelected != null && habitable) {
+            if (shipSelected.isPlaced()) {
+                for (int i = 0; i < shipSelected.getSize(); i++) {
+                    if (shipSelected.isHorizontal()) {
+                        shipsSelected[shipSelected.getPosition()[0]][shipSelected.getPosition()[1] - i] = 0;
+                    } else {
+                        shipsSelected[shipSelected.getPosition()[0] - i][shipSelected.getPosition()[1]] = 0;
+                    }
+                }
+            }
+            shipSelected.setIsPlaced(true);
+            gridPaneShips.getChildren().remove(shipSelected);
+            if (shipSelected.potentialRotate() != shipSelected.isHorizontal()) {
+                shipSelected.rotateShip();
+            }
+            try {
+                if (shipSelected.isHorizontal()) {
+                    gridPaneShips.add(shipSelected, col - shipSelected.getSize() + 1, row);
+                    GridPane.setRowSpan(shipSelected, 0);
+                    GridPane.setColumnSpan(shipSelected, shipSelected.getSize());
+                } else {
+                    gridPaneShips.add(shipSelected, col, row - shipSelected.getSize() + 1);
+                    GridPane.setColumnSpan(shipSelected, 0);
+                    GridPane.setRowSpan(shipSelected, shipSelected.getSize());
+                }
+            } catch (IllegalArgumentException e) {
+                shipSelected.setPosition(row - 1, col - 1);
+                positionsHeadShips[row - 1][col - 1] = shipSelected.getSize();
+                for (int i = 0; i < shipSelected.getSize(); i++) {
+                    if (shipSelected.isHorizontal()) {
+                        shipsSelected[shipSelected.getPosition()[0]][shipSelected.getPosition()[1] - i] = 1;
+                    } else {
+                        shipsSelected[shipSelected.getPosition()[0] - i][shipSelected.getPosition()[1]] = 1;
+                    }
+
+                }
+                infoLabel.setText("Teniente seleccione sus barcos");
+            }
+        } else if (!habitable) {
+            infoLabel.setText("Teniente ponga sus barcos en posiciones validas");
+        }
+    }
 
 
     @FXML
