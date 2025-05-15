@@ -122,6 +122,20 @@ public class GameSelectionController {
         }
     }
 
+    //guarda las posiciones y el status de los barcos en la estructura de datos llamada arraylist
+    public void shipPositions() {
+        for (int i = 0; i < ships.size(); i++) {
+            Ship ship = ships.get(i);
+            int row = ship.getPosition()[0];
+            int col = ship.getPosition()[1];
+            int size = ship.getSize();
+            int horizontal = ship.isHorizontal() ? 1 : 0;
+            int isDestroyed = ship.isDestroyed() ? 1 : 0;
+            shipsPosition.add(new int[]{row, col, size, horizontal, isDestroyed});
+
+        }
+    }
+
     // Acción para "Flota Lista!"
     @FXML
     public void onHandleStartGame(ActionEvent event) {
