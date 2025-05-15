@@ -21,6 +21,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class GameSelectionController {
 
@@ -165,24 +166,20 @@ public class GameSelectionController {
         }
     }
 
-    // Acción para "Generar random"
-    @FXML
-    public void onHandleRandomButton(ActionEvent event) {
-        System.out.println("Generando un random...");
-
-        // Implementa la lógica de random aquí
-        // Ejemplo de lógica que podrías agregar
-        int randomValue = (int)(Math.random() * 100);  // Solo como ejemplo
-        infoLabel.setText("Random Value: " + randomValue);
-
-        // Puedes agregar otras animaciones o efectos si es necesario
-        RotateTransition rotateTransition = new RotateTransition();
-        rotateTransition.setNode(randomButton);
-        rotateTransition.setCycleCount(1);
-        rotateTransition.setDuration(Duration.seconds(0.5));
-        rotateTransition.setByAngle(360);
-        rotateTransition.play();
+    public void shipSelected(Ship ship) {
+        if (shipSelected != null && shipSelected != ship) {
+            shipSelected.originDesing();
+            shipSelected = null;
+        }
+        if (ship.isSelect()) {
+            ship.originDesing();
+            shipSelected = null;
+        } else {
+            ship.selectDesing();
+            shipSelected = ship;
+        }
     }
+
 
     // Método vacío para que no lance errores de compilación
     @FXML
