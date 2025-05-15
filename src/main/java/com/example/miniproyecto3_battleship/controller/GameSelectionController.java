@@ -5,6 +5,7 @@ import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import com.example.miniproyecto3_battleship.model.ships.*;
 import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
+import com.example.miniproyecto3_battleship.model.Exeption.CrossedShipsException;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,6 +87,8 @@ public class GameSelectionController {
     private int actualShadowRow;
 
     private int actualShadowCol;
+
+    private Color colorhover = Color.rgb(0, 0, 0, 0.5);
 
     // Método de inicialización
     @FXML
@@ -206,7 +209,58 @@ public class GameSelectionController {
     }
 
 
+    private void onHandleMouseEnteredShips(int row, int col) {
+        actualShadowCol = col;
+        actualShadowRow = row;
+        colorhover = Color.rgb(0, 0, 0, 0.5);
+        if (shipSelected != null) {
+            try {
+                habitable = true;
+                System.out.println(shipSelected.isHorizontal());
+                for (int j = 0; j < shipSelected.getSize(); j++) {
+                    if (shipSelected.potentialRotate()) {
+                        if (shipsSelected[row][col - j] != 0) {
+                            throw new CrossedShipsException();
+                        }
+                    } else {
+                        if (shipsSelected[row - j][col] != 0) {
+                            throw new CrossedShipsException();
+                        }
+                    }
+                }
+                if ((shipSelected.isHorizontal() && !shipSelected.isPlaced()) || shipSelected.potentialRotate()) {
+                    for (int i = 1; i <= shipSelected.getSize(); i++) {
+                        shadowShipsSelection[row][col - (i - 1)].setFill(colorhover);
+                    }
+                } else {
+                    for (int i = 1; i <= shipSelected.getSize(); i++) {
+                        shadowShipsSelection[row - (i - 1)][col].setFill(colorhover);
+                    }
 
+                }
+            } catch (ArrayIndexOutOfBoundsException | CrossedShipsException x) {
+                System.out.println("Error en la grilla");
+                colorhover = Color.rgb(254, 0, 0, 0.2);
+                try {
+                    habitable = false;
+                    if ((shipSelected.isHorizontal() && !shipSelected.isPlaced()) || shipSelected.potentialRotate()) {
+                        for (int i = 1; i <= shipSelected.getSize(); i++) {
+                            shadowShipsSelection[row][col - (i - 1)].setFill(colorhover);
+                            System.out.println("se pinto una vez");
+                        }
+                    } else {
+                        for (int i = 1; i <= shipSelected.getSize(); i++) {
+                            shadowShipsSelection[row - (i - 1)][col].setFill(colorhover);
+                            System.out.println("se pinto una vez");
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Error en la grilla 2");
+                }
+
+            }
+        }
+    }
 
     @FXML
     void createShadowShip() {
