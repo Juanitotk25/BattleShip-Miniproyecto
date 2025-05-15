@@ -71,7 +71,6 @@ public class WelcomeController {
 
         // Configura las acciones para cada botón
         btnContinue.setOnAction(this::onHandleContinueGame);
-        btnNewGame.setOnAction(this::onHandlePlayGame);
         btnOptions.setOnAction(this::onHandleOptions);
         btnCredits.setOnAction(this::onHandleCredits);
         btnQuitGame.setOnAction(this::onHandleQuitGame);
@@ -120,20 +119,11 @@ public class WelcomeController {
 
     // Acción para el botón "Nuevo Juego"
     @FXML
-    private void onHandlePlayGame(ActionEvent event) {
-        //Llama al metetodo writeToFile para guardar en character.txt con el formato definido
+    public void onHandlePlayGame(javafx.event.ActionEvent actionEvent) throws IOException {
         plainTextFileHandler.writeToFile("character.txt", nameCharacter + "," + " " + "," + "0");
-        System.out.println("Nuevo juego iniciado!");
-        // Aquí deberías inicializar el juego desde cero
-        // Resetear variables del juego, limpiar configuraciones, etc.
-        WelcomeStage.deleteInstance();  // Cierra la ventana de bienvenida
+        WelcomeStage.deleteInstance();
+        GameSelectionStage.getInstance();
 
-        // Asegúrate de que GameSelectionStage se cargue correctamente
-        try {
-            GameSelectionStage.getInstance();  // Llama a la selección de juego
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     // Acción para el botón "Opciones"
