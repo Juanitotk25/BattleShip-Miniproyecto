@@ -262,6 +262,25 @@ public class GameSelectionController {
         }
     }
 
+
+    void onHandleBorderPaneKeyTyped2() {
+        if (!shipSelected.isPlaced()) {
+            shipSelected.rotateShip();
+            shipSelected.setPotentialRotate(!shipSelected.potentialRotate());
+        } else {
+            shipSelected.setPotentialRotate(!shipSelected.potentialRotate());
+        }
+        if (actualShadowCol != -1) {
+            for (int i = 0; i < shadowShipsSelection.length; i++) {
+                for (int j = 0; j < shadowShipsSelection[i].length; j++) {
+                    shadowShipsSelection[i][j].setFill(Color.TRANSPARENT);
+                }
+            }
+            onHandleMouseEnteredShips(actualShadowRow, actualShadowCol);
+        }
+    }
+
+
     @FXML
     void createShadowShip() {
         double cellWidth = 63.7;
