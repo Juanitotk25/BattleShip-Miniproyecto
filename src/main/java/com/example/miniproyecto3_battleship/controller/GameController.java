@@ -3,6 +3,7 @@ package com.example.miniproyecto3_battleship.controller;
 import com.example.miniproyecto3_battleship.model.Player.PlayerBot;
 import com.example.miniproyecto3_battleship.model.Player.PlayerPerson;
 import com.example.miniproyecto3_battleship.model.Game.Game;
+import com.example.miniproyecto3_battleship.model.Serializable.ISerializableFileHandler;
 import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
 import com.example.miniproyecto3_battleship.model.Serializable.Save;
 import com.example.miniproyecto3_battleship.model.Serializable.SerializableFileHandler;
@@ -22,9 +23,6 @@ import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
@@ -42,7 +40,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 import static javafx.scene.paint.Color.ORANGE;
 
-public class GameController {
+public class GameController implements Serializable {
+
+    private Game game;
+    private PlayerBot playerBot;
+    private PlayerPerson playerPerson;
+    private final SerializableFileHandler serializableFileHandler = new SerializableFileHandler();
 
     @FXML
     private GridPane gridPaneGame;
