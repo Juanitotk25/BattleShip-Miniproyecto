@@ -1,21 +1,46 @@
 package com.example.miniproyecto3_battleship.controller;
 
+import com.example.miniproyecto3_battleship.model.Player.PlayerBot;
+import com.example.miniproyecto3_battleship.model.Player.PlayerPerson;
+import com.example.miniproyecto3_battleship.model.Game.Game;
+import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
+import com.example.miniproyecto3_battleship.model.Serializable.Save;
+import com.example.miniproyecto3_battleship.model.Serializable.SerializableFileHandler;
+import com.example.miniproyecto3_battleship.model.ships.*;
 import com.example.miniproyecto3_battleship.view.GameSelectionStage;
+import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.*;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Objects;
+import static javafx.scene.paint.Color.ORANGE;
 
 public class GameController {
 
