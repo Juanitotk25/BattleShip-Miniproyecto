@@ -49,23 +49,58 @@ public class GameController implements Serializable {
 
     @FXML
     private GridPane gridPaneGame;
+
+    @FXML
+    private GridPane gridPaneShips;
+
+    @FXML
+    private BorderPane gameBorderPane;
+
+    @FXML
+    private AnchorPane anchorPaneMiddle;
+
+    @FXML
+    private AnchorPane anchorPaneLeft;
+
     @FXML
     private Label nameCharacter;
+
+    @FXML
+    private Label lbNameVillain;
+
     @FXML
     private ImageView imgCharacter;
+
     @FXML
-    private Button btnRestartFleet;
-    @FXML
-    private Button btnQuitFleet;
+    private ImageView imgVillain;
+
     @FXML
     private Label infoLabel;
 
     @FXML
-    private Rectangle rectangleLabelSelection;
-    @FXML
-    private Label lbSelecction;
-    @FXML
-    private Rectangle rectangleLabelInfo;
+    private Button btnShowEnemyShips;
+
+    private ArrayList<ArrayList<Integer>> matriz;
+    private ArrayList<Ship> playerShips = new ArrayList<>();
+    private ArrayList<Ship> auxPlayerShips;
+    private ArrayList<Ship> enemyShips = new ArrayList<>();
+    private ArrayList<Ship> auxEnemyShips;
+
+    private final Rectangle[][] enemyShadow = new Rectangle[10][10];
+    private Save save;
+
+    private Image image;
+    private ImagePattern imagePatter;
+    private Image expls = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/explosion.png")));
+    ImagePattern imagePattern = new ImagePattern(expls);
+
+    private String nameCharacterActual;
+    private String nameEnemyActual;
+    private int imageEnemyActual;
+
+    private int rowBot, columnbot, countShow;
+
+    private PlainTextFileHandler plainTextFileHandler;
 
     // Método de inicialización
     @FXML
