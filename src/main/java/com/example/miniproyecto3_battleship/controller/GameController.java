@@ -220,6 +220,24 @@ public class GameController implements Serializable {
     }
 
 
+    //este metodo extrae la orientación, tamaño y posición de cada barco
+    //devuelve las caracteristicas anteriores en forma de una lista de barcos
+    //y la info es retornada como lista de arreglos enteros donde cada array es info de un barco
+    public ArrayList<int[]> shipPositions(ArrayList<Ship> ships) {
+        ArrayList<int[]> shipInfo = new ArrayList<>();
+        for (int i = 0; i < ships.size(); i++) {
+            Ship ship = ships.get(i);
+            int row = ship.getPosition()[0];
+            int col = ship.getPosition()[1];
+            int size = ship.getSize();
+            int horizontal = ship.isHorizontal() ? 1 : 0;
+            int isDestroyed = ship.isDestroyed() ? 1 : 0;
+            shipInfo.add(new int[]{row, col, size, horizontal, isDestroyed});
+        }
+        return shipInfo;
+    }
+
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
