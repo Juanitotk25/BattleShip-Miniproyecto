@@ -102,18 +102,34 @@ public class GameController implements Serializable {
 
     private PlainTextFileHandler plainTextFileHandler;
 
-    // Método de inicialización
-    @FXML
+    //Metodo de inicialización del stage y su correspondiente asignacion de fondo y demás
     public void initialize() {
-        // Establecer la imagen del personaje
-        setCharacterImage();
 
-        // Asignar funcionalidad a los botones
-        btnRestartFleet.setOnAction(this::onHandleRestartFleet);
-        btnQuitFleet.setOnAction(this::onHandleQuitFleet);
+        rowBot = 0;
+        columnbot = 0;
 
-        // Establecer el fondo de la pantalla
-        setBackground();
+        plainTextFileHandler = new PlainTextFileHandler();
+        String[] data = plainTextFileHandler.readFromFile("character.txt");
+        nameCharacterActual = data[0];
+        nameEnemyActual = data[1];
+        imageEnemyActual = Integer.parseInt(data[2]);
+
+        image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/mira.png")));
+        imagePatter = new ImagePattern(image);
+
+        Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game_battleship.png").toExternalForm());
+
+
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, false)
+        );
+
+        gameBorderPane.setBackground(new Background(background));
+
     }
 
     // Método para establecer el fondo de la pantalla
