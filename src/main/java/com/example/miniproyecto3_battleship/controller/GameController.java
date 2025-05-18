@@ -132,6 +132,38 @@ public class GameController implements Serializable {
 
     }
 
+    //este metodo hace que setea las grillas del bot y el usuario que seleccióno los barcos
+    //además serializa el estatus del juego y guarda los datos para un uso futuro
+    public void setGridPaneShips(ArrayList<int[]> shipsPositions, int[][] shipsSelected) {
+
+        game = new Game();
+        playerBot = game.getPlayerBot();
+        playerPerson = game.getPlayerPerson();
+        playerPerson.setMatrix();
+        playerBot.setMatrix();
+        playerPerson.setChosenMatrix(shipsSelected);
+        playerBot.generateBotGame();
+
+        setCharacter();
+        setEnemy();
+
+        save = new Save(shipsPositions);
+        playerShips = save.getShip();
+        auxPlayerShips = new ArrayList<>(playerShips);
+        createGridPaneGame();
+
+        gridPaneShips.setStyle("-fx-cursor: default;");
+
+        serializableFileHandler.serialize("save.ser", save);
+        serializableFileHandler.serialize("game.ser", game);
+
+        playerPerson.showMatrix();
+        System.out.println();
+        playerBot.showMatrix();
+        createEnemyShadows();
+    }
+
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
