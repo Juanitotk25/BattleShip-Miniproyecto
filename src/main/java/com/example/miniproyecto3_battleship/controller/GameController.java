@@ -300,6 +300,49 @@ public class GameController implements Serializable {
     }
 
 
+    //este metodo se encarga del status de una celda de la grilla cuando el jugador dispara
+    // si pega a un parte del barco, la celda se actualiza con un simbolo de exito y sigue turno usuario
+    //si falla el tiro, se pone un simbolo de eror en la casilla y es turno del bot
+    //tambien chequea si un barco es destruido y actualiza el status del juego
+    public void onHandleMouseClickedShips(int row, int column) {
+        row += 1;
+        column += 1;
+
+        matriz = playerBot.getMatrix();
+        if (row != 0 && column != 0) {
+            enemyShadow[row - 1][column - 1].setOnMouseClicked(null);
+            enemyShadow[row - 1][column - 1].setOnMouseEntered(null);
+            enemyShadow[row - 1][column - 1].setOnMouseExited(null);
+            enemyShadow[row - 1][column - 1].setStyle("-fx-cursor: default;");
+            if (matriz.get(row - 1).get(column - 1) != 0) {
+                infoLabel.setText("Felicidades, atinaste, tira nuevamente! ");
+                gridPaneGame.add(successSymbol(), column, row);
+                playerBot.changeMatrix(row - 1, column - 1, -1);
+                PauseTransition pause = new PauseTransition(Duration.seconds(.5));
+                pause.setOnFinished(event2 -> {
+                    playerTurn();
+                });
+                pause.play();
+                playerTurn();
+                defeat((game.verifyWinner(playerBot)));
+            } else {
+                infoLabel.setText("Sos muy malo, deja a tu oponente atacar");
+                gridPaneGame.add(errorSymbol(), column, row);
+                playerTurn();
+                playerBot.changeMatrix(row - 1, column - 1, 2);
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(event2 -> {
+                    botAttack();
+                });
+                pause.play();
+            }
+        }
+        DestroyedShip(row, column);
+
+    }
+
+
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
