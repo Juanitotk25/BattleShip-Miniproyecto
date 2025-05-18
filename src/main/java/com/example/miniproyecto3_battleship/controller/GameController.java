@@ -338,7 +338,53 @@ public class GameController implements Serializable {
             }
         }
         DestroyedShip(row, column);
+    }
 
+
+    //Este metodo revisa y chequea si un barco ha sido destruido revisando sus partes
+    //si es destruido, actualiza la grilla y refleja con un efecto que el barco fue destruido
+    //tambien guarda el status del juego y datos
+    public void DestroyedShip(int row, int column){
+        int rowSelected;
+        int columnSelected;
+        boolean isDestroyed;
+        playerBot.showMatrix();
+        if (playerBot.getMatrix().get(row - 1).get(column - 1) == -1) {
+            for (int i = 0; i < enemyShips.size(); i++) {
+                isDestroyed = true;
+                rowSelected = enemyShips.get(i).getPosition()[0];
+                columnSelected = enemyShips.get(i).getPosition()[1];
+                for (int j = 0; j < enemyShips.get(i).getSize(); j++) {
+                    if (enemyShips.get(i).isHorizontal()) {
+                        if (!(playerBot.getMatrix().get(rowSelected).get(columnSelected - j) == -1)) {
+                            isDestroyed = false;
+                        }
+                    } else {
+                        if (!(playerBot.getMatrix().get(rowSelected - j).get(columnSelected) == -1)) {
+                            isDestroyed = false;
+                        }
+                    }
+                }
+                if (isDestroyed) {
+                    enemyShips.get(i).setVisible(true);
+                    enemyShips.get(i).setIsDestroyed(true);
+                    infoLabel.setText("¡Has destruido un barco enemigo!");
+                    for (int j = 0; j < enemyShips.get(i).getSize(); j++) {
+                        if (enemyShips.get(i).isHorizontal()) {
+                            gridPaneGame.add(destroyerFlame(), columnSelected + 1 - j, rowSelected + 1);
+                        } else {
+                            gridPaneGame.add(destroyerFlame(), columnSelected + 1, rowSelected + 1 - j);
+                        }
+                    }
+                    enemyShips.remove(i);
+                }
+            }
+        }
+        save.setShipPositions(shipPositions(auxPlayerShips));
+        playerBot.setEnemyShipsInfo(shipPositions(auxEnemyShips));
+        serializableFileHandler.serialize("save.ser", save);
+        serializableFileHandler.serialize("game.ser", game);
+        victory(game.verifyWinner(playerBot));
     }
 
 
