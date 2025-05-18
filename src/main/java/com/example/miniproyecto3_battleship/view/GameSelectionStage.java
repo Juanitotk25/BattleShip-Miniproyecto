@@ -33,12 +33,12 @@ public class GameSelectionStage extends Stage {
         double screenHeight = Screen.getPrimary().getBounds().getHeight();
 
         // Establecer el tamaño de la ventana al 100% de la pantalla
-        setWidth(screenWidth);
-        setHeight(screenHeight);
+        setWidth(screenWidth * 1);
+        setHeight(screenHeight * 1);
 
         // Establecer la escena
         setScene(scene);
-        setMaximized(true); // Maximizar la ventana para que ocupe toda la pantalla
+        //setMaximized(true); // Maximizar la ventana para que ocupe toda la pantalla
 
         // Mostrar la ventana
         show();

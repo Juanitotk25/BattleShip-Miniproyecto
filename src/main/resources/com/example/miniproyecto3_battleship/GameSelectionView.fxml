@@ -17,11 +17,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="gameBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onHandleBorderPaneKeyTyped" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.GameSelectionController">
+<BorderPane fx:id="gameBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onHandleBorderPaneKeyTyped" prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.GameSelectionController">
     <right>
         <AnchorPane fx:id="anchorPaneLeft" prefHeight="1080.0" prefWidth="576.0" BorderPane.alignment="CENTER">
             <children>
-                <VBox fx:id="shipSelectVbox" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="162.0" layoutY="185.0" prefHeight="514.0" prefWidth="384.0" spacing="25.0" style="-fx-background-color: rgba(15, 47, 66,0.5); -fx-border-color: #6a767f; -fx-border-width: 3; -fx-border-radius: 15; -fx-background-radius: 15;">
+                <VBox fx:id="shipSelectVbox" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="272.0" layoutY="249.0" prefHeight="575.0" prefWidth="379.0" spacing="25.0" style="-fx-background-color: rgba(15, 47, 66,0.5); -fx-border-color: #6a767f; -fx-border-width: 3; -fx-border-radius: 15; -fx-background-radius: 15;">
                     <children>
                         <HBox fx:id="hBoxFragatas" alignment="BOTTOM_CENTER" fillHeight="false" prefHeight="80.0" prefWidth="457.0" spacing="25.0">
                             <VBox.margin>
@@ -34,7 +34,7 @@
                             <padding>
                                 <Insets right="30.0" />
                             </padding></HBox>
-                        <HBox fx:id="hBoxSubmarinos" alignment="CENTER" fillHeight="false" prefHeight="142.0" prefWidth="480.0" spacing="50.0">
+                        <HBox fx:id="hBoxSubmarinos" alignment="CENTER" fillHeight="false" prefHeight="117.0" prefWidth="438.0" spacing="50.0">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
@@ -46,7 +46,7 @@
                                 <Insets bottom="15.0" />
                             </VBox.margin></HBox>
                     </children></VBox>
-                <Label alignment="CENTER" layoutX="204.0" layoutY="60.0" prefHeight="59.0" prefWidth="299.0" style="-fx-background-color: #0f2f42; -fx-border-color: #6a767f; -fx-border-width: 3;" text="Seleccione su barco" textFill="WHITE">
+                <Label alignment="CENTER" layoutX="288.0" layoutY="67.0" prefHeight="59.0" prefWidth="299.0" style="-fx-background-color: #0f2f42; -fx-border-color: #6a767f; -fx-border-width: 3;" text="Seleccione su barco" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
@@ -54,7 +54,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                 </Label>
-                <Button fx:id="randomButton" layoutX="130.0" layoutY="120.0" mnemonicParsing="false" onAction="#onHandleRandomButton" prefHeight="75.0" prefWidth="75.0" textFill="WHITE">
+                <Button fx:id="randomButton" layoutX="280.0" layoutY="140.0" mnemonicParsing="false" onAction="#onHandleRandomButton" prefHeight="75.0" prefWidth="75.0" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
@@ -75,18 +75,18 @@
     <left>
         <AnchorPane prefHeight="1080.0" prefWidth="431.0" BorderPane.alignment="CENTER">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2f42" height="48.0" layoutX="67.0" layoutY="94.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="202.0" />
-                <Label fx:id="nameCharacter" layoutX="71.0" layoutY="101.0" prefHeight="34.0" prefWidth="234.0" text="Coronel Sander" textFill="WHITE">
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2f42" height="48.0" layoutX="27.0" layoutY="70.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="202.0" />
+                <Label fx:id="nameCharacter" layoutX="25.0" layoutY="77.0" prefHeight="34.0" prefWidth="234.0" text="Coronel Sander" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
                 </Label>
-                <ImageView fx:id="imgCharacter" fitHeight="183.0" fitWidth="179.0" layoutX="71.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgCharacter" fitHeight="183.0" fitWidth="179.0" layoutX="27.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/character1.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="65.0" layoutY="457.0" mnemonicParsing="false" onAction="#onHandleStartGame" prefHeight="56.0" prefWidth="206.0" style="-fx-background-color: #7D3434; -fx-border-radius: 30; -fx-background-radius: 70; -fx-border-width: 3; -fx-border-color: #373F51;" styleClass="buttonRed" stylesheets="@Css/css.css" text="Flota Lista!" textFill="WHITE">
+                <Button layoutX="25.0" layoutY="453.0" mnemonicParsing="false" onAction="#onHandleStartGame" prefHeight="56.0" prefWidth="206.0" style="-fx-background-color: #7D3434; -fx-border-radius: 30; -fx-background-radius: 70; -fx-border-width: 3; -fx-border-color: #373F51;" styleClass="buttonRed" stylesheets="@Css/css.css" text="Flota Lista!" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
@@ -94,7 +94,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button alignment="CENTER" layoutX="58.0" layoutY="557.0" mnemonicParsing="false" onAction="#onHandleReturn" prefHeight="65.0" prefWidth="219.0" styleClass="buttonReturn" stylesheets="@Css/css.css" text="Abandonar flota" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="18.0" layoutY="545.0" mnemonicParsing="false" onAction="#onHandleReturn" prefHeight="65.0" prefWidth="219.0" styleClass="buttonReturn" stylesheets="@Css/css.css" text="Abandonar flota" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                     </font>
@@ -108,8 +108,8 @@
     <center>
         <AnchorPane fx:id="anchorPaneMiddle" prefHeight="1080.0" prefWidth="1012.0" BorderPane.alignment="CENTER">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2e4093" height="493.0" layoutX="19.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="506.0" />
-                <GridPane fx:id="gridPaneShips" layoutX="31.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="482.0">
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2e4093" height="565.0" layoutX="107.0" layoutY="224.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="647.0" />
+                <GridPane fx:id="gridPaneShips" gridLinesVisible="true" layoutX="42.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="619.0" prefWidth="708.0">
                     <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -248,8 +248,8 @@
                         <Font name="Berlin Sans FB" size="35.0" />
                     </font>
                 </Label>
-                <Rectangle fx:id="rectangleLabelInfo" arcHeight="5.0" arcWidth="5.0" fill="#00000066" height="63.0" layoutX="54.0" layoutY="661.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="482.0" />
-                <Label fx:id="infoLabel" alignment="CENTER" layoutX="54.0" layoutY="661.0" prefHeight="70.0" prefWidth="489.0" textFill="WHITE">
+                <Rectangle fx:id="rectangleLabelInfo" arcHeight="5.0" arcWidth="5.0" fill="#00000066" height="63.0" layoutX="100.0" layoutY="860.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="482.0" />
+                <Label fx:id="infoLabel" alignment="CENTER" layoutX="119.0" layoutY="856.0" prefHeight="70.0" prefWidth="489.0" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                     </font>
