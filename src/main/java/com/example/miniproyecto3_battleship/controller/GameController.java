@@ -164,6 +164,27 @@ public class GameController implements Serializable {
     }
 
 
+    //organiza el ambiente del jugador y el bot de donde lo dejaron en la ultima sesion registrada
+    //por esas las lineas de deserialización en los archivos save.ser y game.ser
+    //restaura los barcos del bot y jugador donde estaban
+    public void Continue() {
+        save = (Save) serializableFileHandler.deserialize("save.ser");
+        game = (Game) serializableFileHandler.deserialize("game.ser");
+        playerBot = game.getPlayerBot();
+        playerPerson = game.getPlayerPerson();
+        playerShips = save.getShip();
+        auxPlayerShips = new ArrayList<>(playerShips);
+        setCharacter();
+        setEnemy();
+        createGridPaneGame();
+        gridPaneShips.setStyle("-fx-cursor: default;");
+        createEnemyShadows();
+        loadGridPaneShips();
+        loadGridPaneGame();
+
+    }
+
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
