@@ -269,6 +269,36 @@ public class GameController implements Serializable {
 
     }
 
+    //este metodo es como el setEnemy solo que aplica para el setChracter del usuario, es decir
+    public void setCharacter() {
+
+        Image imageCharacterActual;
+        nameCharacter.setText(nameCharacterActual);
+        if (Objects.equals(nameCharacterActual, "Thrall")) {
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character1.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Jaina Proudmoore")) {
+            nameCharacter.setStyle("-fx-font-size: 25; -fx-font-family: 'Berlin Sans FB'");
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character2.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Sylvanas Windrunner")) {
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character3.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Anduin Wrynn")) {
+            nameCharacter.setStyle("-fx-font-size: 25; -fx-font-family: 'Berlin Sans FB'");
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character4.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Gul'dan")) {
+            nameCharacter.setAlignment(Pos.CENTER);
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character5.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        } else if (Objects.equals(nameCharacterActual, "Illidan Stormrage")) {
+            nameCharacter.setAlignment(Pos.CENTER);
+            imageCharacterActual = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character6.png")));
+            imgCharacter.setImage(imageCharacterActual);
+        }
+    }
+
 
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
