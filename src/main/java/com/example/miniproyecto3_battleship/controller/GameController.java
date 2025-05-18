@@ -248,6 +248,26 @@ public class GameController implements Serializable {
         }
     }
 
+    //asigna un enemigo random de la lista de nombres y una de las dos imagenes para enemigos
+    //se utilizan solos dos imagenes para no ocupar mas espacio en el proyecto
+    //además serializa y guarda los datos para que se guarde el juego
+    public void setEnemy() {
+        if (Objects.equals(nameEnemyActual, " ")) {
+            String[] enemys = {"Gul'dan", "Arthas", "Illidan", "Kill'jaeden"};
+            nameEnemyActual = enemys[(int) (Math.random() * 3)];
+            lbNameVillain.setText(nameEnemyActual);
+            imageEnemyActual = (int) (Math.random() * 2);
+            plainTextFileHandler.writeToFile("character.txt", nameCharacterActual + "," + nameEnemyActual + "," + imageEnemyActual);
+        } else {
+            lbNameVillain.setText(nameEnemyActual);
+        }
+        if (imageEnemyActual == 0) {
+            imgVillain.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/character5.png"))));
+        } else {
+            imgVillain.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/character6.png"))));
+        }
+
+    }
 
 
     // Método para establecer el fondo de la pantalla
