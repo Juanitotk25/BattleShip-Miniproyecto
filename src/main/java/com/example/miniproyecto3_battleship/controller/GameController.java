@@ -181,6 +181,41 @@ public class GameController implements Serializable {
         createEnemyShadows();
         loadGridPaneShips();
         loadGridPaneGame();
+    }
+
+    //este metodo setea las grillas para el juego, ajustando los barcos y su posicionamiento
+    //ajusta tambien las celdas para que se adecuen correctamente los barcos en su orientación correcta
+    public void createGridPaneGame() {
+        double cellWidth = 63.7;
+        double cellHeight = 63.7;
+        gridPaneShips.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto3_battleship/Css/css.css")).toExternalForm());
+        for (int rows = 1; rows <= 10; rows++) {
+            for (int col = 1; col <= 10; col++) {
+                Rectangle cell = new Rectangle(cellWidth, cellHeight);
+                cell.setFill(Color.TRANSPARENT);
+                cell.getStyleClass().add("cell");
+                gridPaneShips.add(cell, col, rows);
+            }
+        }
+
+        for (int i = 0; i < playerShips.size(); i++) {
+            Ship shipSelected = this.playerShips.get(i);
+            int row = shipSelected.getPosition()[0] + 1;
+            int col = shipSelected.getPosition()[1] + 1;
+            try {
+                if (shipSelected.isHorizontal()) {
+                    gridPaneShips.add(shipSelected, col - shipSelected.getSize() + 1, row);
+                    GridPane.setRowSpan(shipSelected, 0);
+                    GridPane.setColumnSpan(shipSelected, shipSelected.getSize());
+                } else {
+                    gridPaneShips.add(shipSelected, col, row - shipSelected.getSize() + 1);
+                    GridPane.setColumnSpan(shipSelected, 0);
+                    GridPane.setRowSpan(shipSelected, shipSelected.getSize());
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
 
     }
 
