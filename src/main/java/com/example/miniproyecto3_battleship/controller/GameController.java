@@ -237,6 +237,18 @@ public class GameController implements Serializable {
         return shipInfo;
     }
 
+    // este metodo itera a traves de la lista de los barcos enemigos y cambia
+    //el estatus de la visibilidad de un barco si no son destruidos, usa el metodo isDestroyed
+    @FXML
+    public void onHandlePutEnemyShips() {
+        for (int i = 0; i < enemyShips.size(); i++) {
+            if (!(enemyShips.get(i).isDestroyed())) {
+                enemyShips.get(i).setVisible(!enemyShips.get(i).isVisible());
+            }
+        }
+    }
+
+
 
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
