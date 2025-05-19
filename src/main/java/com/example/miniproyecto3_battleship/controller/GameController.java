@@ -544,6 +544,42 @@ public class GameController implements Serializable {
         gridPaneGame.setDisable(!gridPaneGame.isDisable());
     }
 
+    //esto simula el ataque del bot, si falla cede el turno al otro, si
+    //acierta sigue atacando, además ejecuta una pausa minima para mejorar la experiencia
+    //del jugador simulando mucho mejor
+    @FXML
+    void botAttack() {
+        infoLabel.setText("Chat gpt esta pensando...");
+        playerBot.generatePositionRandom(playerPerson.getMatrix());
+        rowBot = playerBot.getPositionRandom()[0];
+        columnbot = playerBot.getPositionRandom()[1];
+        matriz = playerPerson.getMatrix();
+        System.out.print("row: " + rowBot + " column: " + columnbot);
+
+        if (matriz.get(rowBot - 1).get(columnbot - 1) != 0) {
+            infoLabel.setText("Tu opente ha acertado, atacara nuevamente");
+            gridPaneShips.add(successSymbol(), columnbot, rowBot);
+            playerPerson.changeMatrix(rowBot - 1, columnbot - 1, -1);
+            defeat((game.verifyWinner(playerPerson)));
+            PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+            pause.setOnFinished(event2 -> {
+                infoLabel.setText("Chat gpt esta pensando...");
+                botAttack();
+            });
+            pause.play();
+
+        } else {
+            infoLabel.setText("Tu oponente ha fallado, es tu turno");
+            gridPaneShips.add(errorSymbol(), columnbot, rowBot);
+            playerPerson.changeMatrix(rowBot - 1, columnbot - 1, 2);
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(event -> {
+                playerTurn();
+            });
+            pause.play();
+        }
+        destroyedEnemyShip();
+    }
 
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
