@@ -705,6 +705,28 @@ public class GameController implements Serializable {
         return group;
     }
 
+    // este metodo es el que chequea mediante booleano si el jugador gano o no
+    //tmb actualiza los archivos y datos del juego en el guardado
+    public void victory(boolean victory) {
+        if (victory) {
+            infoLabel.setText("buena manito, ganaste por fin");
+            gridPaneGame.setDisable(true);
+            Path path = Paths.get("game.ser");
+            Path path2 = Paths.get("save.ser");
+
+            try {
+                Files.delete(path);
+                Files.delete(path2);
+                System.out.println("El archivo ha sido borrado.");
+            } catch (IOException e) {
+                System.err.println("Error al borrar el archivo: " + e.getMessage());
+            }
+        }
+    }
+
+
+
+
 
 
     // Método para cambiar la imagen del personaje
