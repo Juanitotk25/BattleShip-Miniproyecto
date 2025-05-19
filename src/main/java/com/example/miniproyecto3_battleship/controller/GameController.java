@@ -744,6 +744,51 @@ public class GameController implements Serializable {
     }
 
 
+    //crea sombras sobre los barcos enemigos, permitiendo al usuario interactuar con las casillas
+    //el mouse subrayando la celda correspondiente
+    public void createEnemyShadows() {
+        double cellWidth = 63.7;
+        double cellHeight = 63.7;
+        gridPaneGame.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto_3_battlership/Css/css.css")).toExternalForm());
+        enemyShips = playerBot.getEnemyShips();
+        auxEnemyShips = new ArrayList<>(enemyShips);
+        for (int i = 0; i < enemyShips.size(); i++) {
+            Ship shipSelected = enemyShips.get(i);
+            int row = shipSelected.getPosition()[0] + 1;
+            int col = shipSelected.getPosition()[1] + 1;
+            try {
+                if (shipSelected.isHorizontal()) {
+                    gridPaneGame.add(shipSelected, col - shipSelected.getSize() + 1, row);
+                    GridPane.setRowSpan(shipSelected, 0);
+                    GridPane.setColumnSpan(shipSelected, shipSelected.getSize());
+                } else {
+                    gridPaneGame.add(shipSelected, col, row - shipSelected.getSize() + 1);
+                    GridPane.setColumnSpan(shipSelected, 0);
+                    GridPane.setRowSpan(shipSelected, shipSelected.getSize());
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            shipSelected.setVisible(false);
+        }
+        for (int rows = 1; rows <= 10; rows++) {
+            for (int col = 1; col <= 10; col++) {
+                Rectangle cell = new Rectangle(cellWidth, cellHeight);
+                cell.setFill(Color.TRANSPARENT);
+                cell.getStyleClass().add("cell");
+                enemyShadow[rows - 1][col - 1] = cell;
+                int finalRows = rows - 1;
+                int finalCol = col - 1;
+                enemyShadow[rows - 1][col - 1].setOnMouseEntered(e -> onHandleMouseEnteredShips(finalRows, finalCol));
+                enemyShadow[rows - 1][col - 1].setOnMouseExited(e -> onHandleMouseExitedShips(finalRows, finalCol));
+                enemyShadow[rows - 1][col - 1].setOnMouseClicked(e -> onHandleMouseClickedShips(finalRows, finalCol));
+                gridPaneGame.add(enemyShadow[rows - 1][col - 1], col, rows);
+            }
+        }
+
+    }
+
+
 
 
     // Método para cambiar la imagen del personaje
