@@ -477,6 +477,30 @@ public class GameController implements Serializable {
     }
 
 
+    //Setea la grilla y posiciona los barcos para el bot mostrando el estado de barcos enemigos
+    //funciona igual que el anterior, mostrando -1 si acertó y 2 si falló, tambien llama al metodo
+    //loadDestroyedShip y deshabilita los listeners con casillas que han sido acertadas o al revés
+    public void loadGridPaneGame() {
+        matriz = playerBot.getMatrix();
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (matriz.get(i).get(j) == 2) {
+                    gridPaneGame.add(errorSymbol(), j + 1, i + 1);
+                    enemyShadow[i][j].setOnMouseClicked(null);
+                    enemyShadow[i][j].setOnMouseEntered(null);
+                    enemyShadow[i][j].setOnMouseExited(null);
+                } else if (matriz.get(i).get(j) == -1) {
+                    gridPaneGame.add(successSymbol(), j + 1, i + 1);
+                    enemyShadow[i][j].setOnMouseClicked(null);
+                    enemyShadow[i][j].setOnMouseEntered(null);
+                    enemyShadow[i][j].setOnMouseExited(null);
+                }
+            }
+        }
+        loadDestroyedShip();
+    }
+
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
