@@ -500,6 +500,44 @@ public class GameController implements Serializable {
         loadDestroyedShip();
     }
 
+    //este metodo funciona igual que el del usuario, itera sobre todas las partes del barco
+    //si todas han sido golpeadas, actualiza la grilla con un efecto de destrucción y saca el barco
+    //de la lista de barcos del bot
+    public void loadDestroyedShip() {
+        int rowSelected;
+        int columnSelected;
+        boolean isDestroyed;
+        for (int k = 0; k < enemyShips.size(); k++) {
+            isDestroyed = true;
+            rowSelected = enemyShips.get(k).getPosition()[0];
+            columnSelected = enemyShips.get(k).getPosition()[1];
+            for (int l = 0; l < enemyShips.get(k).getSize(); l++) {
+                if (enemyShips.get(k).isHorizontal()) {
+                    if (!(matriz.get(rowSelected).get(columnSelected - l) == -1)) {
+                        isDestroyed = false;
+                    }
+                } else {
+                    if (!(matriz.get(rowSelected - l).get(columnSelected) == -1)) {
+                        isDestroyed = false;
+                    }
+                }
+            }
+            if (isDestroyed) {
+                enemyShips.get(k).setVisible(true);
+                enemyShips.get(k).setIsDestroyed(true);
+                infoLabel.setText("Buena, destruiste un barco enemigo!");
+                for (int j = 0; j < enemyShips.get(k).getSize(); j++) {
+                    if (enemyShips.get(k).isHorizontal()) {
+                        gridPaneGame.add(destroyerFlame(), columnSelected + 1 - j, rowSelected + 1);
+                    } else {
+                        gridPaneGame.add(destroyerFlame(), columnSelected + 1, rowSelected + 1 - j);
+                    }
+                }
+                enemyShips.remove(k);
+            }
+        }
+    }
+
 
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
