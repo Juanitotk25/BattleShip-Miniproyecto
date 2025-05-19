@@ -581,6 +581,50 @@ public class GameController implements Serializable {
         destroyedEnemyShip();
     }
 
+
+    //actualiza el status del juego luego de que un barco ha sido destruido
+    //añade efectos visuales y ademas quita al barco de la lista de barcos
+    public void destroyedEnemyShip() {
+        int rowSelected;
+        int columnSelected;
+        boolean isDestroyed;
+        if (playerPerson.getMatrix().get(rowBot - 1).get(columnbot - 1) == -1) {
+            for (int i = 0; i < playerShips.size(); i++) {
+                isDestroyed = true;
+                rowSelected = playerShips.get(i).getPosition()[0];
+                columnSelected = playerShips.get(i).getPosition()[1];
+                for (int j = 0; j < playerShips.get(i).getSize(); j++) {
+                    if (playerShips.get(i).isHorizontal()) {
+                        if (!(playerPerson.getMatrix().get(rowSelected).get(columnSelected - j) == -1)) {
+                            isDestroyed = false;
+                        }
+                    } else {
+                        if (!(playerPerson.getMatrix().get(rowSelected - j).get(columnSelected) == -1)) {
+                            isDestroyed = false;
+                        }
+                    }
+                }
+                if (isDestroyed) {
+                    playerShips.get(i).setVisible(true);
+                    playerShips.get(i).setIsDestroyed(true);
+                    infoLabel.setText("¡El enemigo destruyo un barco!");
+                    for (int j = 0; j < playerShips.get(i).getSize(); j++) {
+                        if (playerShips.get(i).isHorizontal()) {
+                            gridPaneShips.add(destroyerFlame(), columnSelected + 1 - j, rowSelected + 1);
+                        } else {
+                            gridPaneShips.add(destroyerFlame(), columnSelected + 1, rowSelected + 1 - j);
+                        }
+                    }
+                    playerShips.remove(i);
+                }
+            }
+        }
+        save.setShipPositions(shipPositions(auxPlayerShips));
+        playerBot.setEnemyShipsInfo(shipPositions(auxEnemyShips));
+        serializableFileHandler.serialize("save.ser", save);
+        serializableFileHandler.serialize("game.ser", game);
+    }
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
