@@ -538,6 +538,12 @@ public class GameController implements Serializable {
         }
     }
 
+    //se encarga de que el usuario solo tenga un turno y luego pase al enemigo
+    //eso si, tiene solo uno si acierta mal, si acierta bien sigue
+    public void playerTurn() {
+        gridPaneGame.setDisable(!gridPaneGame.isDisable());
+    }
+
 
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
