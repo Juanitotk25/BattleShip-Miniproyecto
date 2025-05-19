@@ -801,7 +801,19 @@ public class GameController implements Serializable {
         enemyShadow[row][col].setFill(colorDefault);
     }
 
+    @FXML
+    public void onHandleMouseEnteredeShowEnemyShips(javafx.scene.input.MouseEvent mouseEvent) {
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/ButtonHoverShowEnemyShips.png")));
+        ImageInput imageInput = new ImageInput(newImage);
+        btnShowEnemyShips.setEffect(imageInput);
+    }
 
+    @FXML
+    public void onHandleMouseExitedShowEnemyShips(javafx.scene.input.MouseEvent mouseEvent) {
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/buttonShowEnemyShips.png")));
+        ImageInput imageInput = new ImageInput(newImage);
+        btnShowEnemyShips.setEffect(imageInput);
+    }
 
 
 
