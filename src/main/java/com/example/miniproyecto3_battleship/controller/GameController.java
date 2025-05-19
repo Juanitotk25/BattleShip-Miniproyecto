@@ -387,6 +387,43 @@ public class GameController implements Serializable {
         victory(game.verifyWinner(playerBot));
     }
 
+    //este metodo actualiza la imagen de cuando golpea un barco
+    //setea la imagen de un personaje de fuego
+    public Group destroyerFlame(){
+        Polygon flame = new Polygon();
+        flame.getPoints().addAll(25.0, 0.0,   // Punta superior de la llama
+                30.0, 8.0,   // Curva derecha superior
+                35.0, 5.0,   // Pico derecho alto
+                33.0, 15.0,  // Curva intermedia derecha
+                40.0, 25.0,  // Pico derecho medio
+                30.0, 28.0,  // Base derecha
+                35.0, 40.0,  // Extremo inferior derecho
+                25.0, 35.0,  // Centro inferior
+                15.0, 40.0,  // Extremo inferior izquierdo
+                20.0, 28.0,  // Base izquierda
+                10.0, 25.0,  // Pico izquierdo medio
+                17.0, 15.0,  // Curva intermedia izquierda
+                15.0, 5.0,   // Pico izquierdo alto
+                20.0, 8.0);
+        flame.setScaleX(1.6);
+        flame.setScaleY(1.6);
+        flame.setRotate(180);
+        flame.setFill(imagePattern); // Naranja rojizo
+        flame.setStrokeWidth(0);
+        Group group = new Group(flame);
+        group.setEffect(new DropShadow(4, Color.BLACK));
+
+
+
+
+
+
+        Image expls = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/explosion.png")));
+        ImagePattern imagePattern = new ImagePattern(expls);
+        flame.setFill(imagePattern);
+        return group;
+    }
+
 
 
     // Método para establecer el fondo de la pantalla
