@@ -625,6 +625,45 @@ public class GameController implements Serializable {
         serializableFileHandler.serialize("game.ser", game);
     }
 
+
+    //crea el simbolo que representa el error si fallá un tiro en la grilla
+    //se crea una x y se retorna en un contenedor haciendo asi la X con formato y color rojo
+    public Group errorSymbol() {
+        Group group = new Group();
+        Polygon xShape = new Polygon(
+                // Coordenadas para la parte superior izquierda de la "X"
+                10, 0,
+                20, 0,
+                30, 20,
+                40, 0,
+                50, 0,
+                35, 30,
+                50, 60,
+                40, 60,
+                30, 40,
+                20, 60,
+                10, 60,
+                25, 30
+        );
+
+        // Estilo estético pirata
+        xShape.setFill(Color.DARKRED); // Rojo oscuro que recuerda a un mapa antiguo
+        xShape.setStroke(Color.BLACK); // Borde negro
+        xShape.setStrokeWidth(2);
+
+        // Efectos: Sombra
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.BLACK);
+        shadow.setRadius(5);
+        shadow.setOffsetX(3);
+        shadow.setOffsetY(3);
+        xShape.setEffect(shadow);
+        group.getChildren().addAll(xShape);
+        group.setScaleX(0.7);
+        group.setScaleY(0.7);
+        return group;
+    }
+
     // Método para establecer el fondo de la pantalla
     private void setBackground() {
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
