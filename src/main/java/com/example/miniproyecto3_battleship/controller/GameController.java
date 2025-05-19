@@ -724,7 +724,24 @@ public class GameController implements Serializable {
         }
     }
 
+    //funciona igual que el anterior método solo que arroja mensaje de derrota
+    public void defeat(boolean defeat) {
+        if (defeat) {
+            infoLabel.setText("Has perdido ;(");
+            gridPaneGame.setDisable(true);
+            Path path = Paths.get("game.ser");
+            Path path2 = Paths.get("save.ser");
 
+            try {
+                Files.delete(path);
+                Files.delete(path2);
+                System.out.println("El archivo ha sido borrado.");
+            } catch (IOException e) {
+                System.err.println("Error al borrar el archivo: " + e.getMessage());
+            }
+
+        }
+    }
 
 
 
