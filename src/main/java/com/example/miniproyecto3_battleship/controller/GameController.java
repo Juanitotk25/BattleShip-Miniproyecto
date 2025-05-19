@@ -435,9 +435,46 @@ public class GameController implements Serializable {
             }
         }
         loadDestroyedEnemyShip();
-
     }
 
+    //este metodo chequea si todas las partes de un barco han sido destruidas y actualiza
+    //la grilla reflejando la destruccion del barco,tambien el barco es removido de la lista
+    // de barcos
+    public void loadDestroyedEnemyShip() {
+        int rowSelected;
+        int columnSelected;
+        boolean isDestroyed;
+        for (int k = 0; k < playerShips.size(); k++) {
+            isDestroyed = true;
+            rowSelected = playerShips.get(k).getPosition()[0];
+            columnSelected = playerShips.get(k).getPosition()[1];
+            for (int l = 0; l < playerShips.get(k).getSize(); l++) {
+                if (playerShips.get(k).isHorizontal()) {
+                    if (!(matriz.get(rowSelected).get(columnSelected - l) == -1)) {
+                        isDestroyed = false;
+                    }
+                } else {
+                    if (!(matriz.get(rowSelected - l).get(columnSelected) == -1)) {
+                        isDestroyed = false;
+                    }
+                }
+            }
+            if (isDestroyed) {
+                playerShips.get(k).setVisible(true);
+                playerShips.get(k).setIsDestroyed(true);
+                infoLabel.setText("Por fin destruiste un barco!");
+                for (int j = 0; j < playerShips.get(k).getSize(); j++) {
+
+                    if (playerShips.get(k).isHorizontal()) {
+                        gridPaneShips.add(destroyerFlame(), columnSelected + 1 - j, rowSelected + 1);
+                    } else {
+                        gridPaneShips.add(destroyerFlame(), columnSelected + 1, rowSelected + 1 - j);
+                    }
+                }
+                playerShips.remove(k);
+            }
+        }
+    }
 
 
     // Método para establecer el fondo de la pantalla
