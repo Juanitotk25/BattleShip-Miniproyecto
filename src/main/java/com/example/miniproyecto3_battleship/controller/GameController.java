@@ -414,14 +414,28 @@ public class GameController implements Serializable {
         group.setEffect(new DropShadow(4, Color.BLACK));
 
 
-
-
-
-
         Image expls = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/explosion.png")));
         ImagePattern imagePattern = new ImagePattern(expls);
         flame.setFill(imagePattern);
         return group;
+    }
+
+    //carga los barcos del jugador en la UI e itera a traves de la matrix del jugador
+    //un valor de 2 es que falló y actualiza con error
+    // un valor de -1 es que atacó correctamente y llama al metodo DestroyedEnemyShip
+    public void loadGridPaneShips() {
+        matriz = playerPerson.getMatrix();
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (matriz.get(i).get(j) == 2) {
+                    gridPaneShips.add(errorSymbol(), j + 1, i + 1);
+                } else if (matriz.get(i).get(j) == -1) {
+                    gridPaneShips.add(successSymbol(), j + 1, i + 1);
+                }
+            }
+        }
+        loadDestroyedEnemyShip();
+
     }
 
 
