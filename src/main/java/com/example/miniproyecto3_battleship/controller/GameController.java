@@ -815,8 +815,17 @@ public class GameController implements Serializable {
         btnShowEnemyShips.setEffect(imageInput);
     }
 
+    @FXML
+    void onHandleClickResetGame(ActionEvent event) throws IOException {
+        GameStage.deleteInstance();
+        GameSelectionStage.getInstance();
+    }
 
-
+    @FXML
+    public void onHandleReturn(javafx.event.ActionEvent actionEvent) throws IOException {
+        GameStage.deleteInstance();
+        WelcomeStage.getInstance();
+    }
 
 
 }

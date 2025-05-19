@@ -196,6 +196,7 @@ public class GameSelectionController {
 
         if (totalSum != 20) {
             infoLabel.setText("Teniente debe seleccionar todos los barcos antes de poder ir a la batalla");
+            System.out.println("Te faltan barcos por seleccionar");
             return;
         }
         rectangleLabelInfo.setOpacity(0);
@@ -204,6 +205,9 @@ public class GameSelectionController {
         lbSelecction.setOpacity(0);
 
         shipPositions();
+
+        GameStage.getInstance().getGameController().setGridPaneShips(shipsPosition, shipsSelected);
+        GameSelectionStage.deleteInstance();
     }
 
     // Acción para "Abandonar flota"

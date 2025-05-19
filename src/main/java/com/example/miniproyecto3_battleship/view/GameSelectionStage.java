@@ -48,7 +48,7 @@ public class GameSelectionStage extends Stage {
         private static GameSelectionStage INSTANCE;
     }
 
-    // Método para obtener una instancia única de GameSelectionStage
+    // Metodo para obtener una instancia única de GameSelectionStage
     public static GameSelectionStage getInstance() throws IOException {
         GameSelectionStage.GameStageHolder.INSTANCE =
                 GameSelectionStage.GameStageHolder.INSTANCE != null ?
