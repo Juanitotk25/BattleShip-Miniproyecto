@@ -785,8 +785,16 @@ public class GameController implements Serializable {
                 gridPaneGame.add(enemyShadow[rows - 1][col - 1], col, rows);
             }
         }
-
     }
+
+    //este mewtodo es cuando el usuario se ubica sobre una celda enemiga y asi subrayarla con
+    //la sombra enemiga disparando ese evento
+    public void onHandleMouseEnteredShips(int row, int col) {
+
+        enemyShadow[row][col].setFill(imagePatter);
+    }
+
+
 
 
 
