@@ -664,18 +664,48 @@ public class GameController implements Serializable {
         return group;
     }
 
-    // Método para establecer el fondo de la pantalla
-    private void setBackground() {
-        Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
-        BackgroundImage background = new BackgroundImage(
-                backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(100, 100, true, true, true, false)
+
+    //Hace lo mismo que el simbolo de error, solo que este actualiza con el icono de una bala de cañon
+    public Group successSymbol() {
+        Group group = new Group();
+        Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/bombfx.png")));
+        ImagePattern imagePattern4 = new ImagePattern(image4);
+        Image image5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/soga.png")));
+        ImagePattern imagePattern5 = new ImagePattern(image5);
+
+        Circle bombBody = new Circle(25, 25, 20);
+        bombBody.setFill(Color.DARKSLATEBLUE); // Color gris oscuro con matiz azul
+        bombBody.setFill(imagePattern4);
+        bombBody.setEffect(new DropShadow(4, Color.BLACK));
+        Polygon fuse = new Polygon(25, 5, 40, 0, 42, 2, 26, 7);
+        fuse.setFill(imagePattern5);
+
+        Polygon spark = new Polygon(
+                28, -12,  // Pico superior largo
+                30, -6,  // Pico superior derecho corto
+                33, -4,  // Pico derecho largo
+                30, -2,  // Pico inferior derecho corto
+                28, 0,   // Pico inferior largo
+                26, -2,  // Pico inferior izquierdo corto
+                23, -4,  // Pico izquierdo largo
+                26, -6   // Pico superior izquierdo corto
         );
-        gridPaneGame.setBackground(new Background(background));
+        spark.setFill(Color.rgb(239, 196, 64));
+        spark.setStroke(ORANGE);
+        spark.setStrokeWidth(0.5);
+        spark.setEffect(new DropShadow(5, Color.YELLOW));
+
+        spark.setScaleX(1.2);
+        spark.setScaleY(1.2);
+        spark.setTranslateX(15);
+        spark.setTranslateY(0);
+
+
+        group.getChildren().addAll(bombBody, fuse, spark);
+        return group;
     }
+
+
 
     // Método para cambiar la imagen del personaje
     private void setCharacterImage() {
