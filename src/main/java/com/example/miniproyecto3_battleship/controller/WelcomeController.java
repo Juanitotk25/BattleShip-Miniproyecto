@@ -2,46 +2,69 @@ package com.example.miniproyecto3_battleship.controller;
 
 import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
 import com.example.miniproyecto3_battleship.view.GameSelectionStage;
+import com.example.miniproyecto3_battleship.view.GameStage;
 import com.example.miniproyecto3_battleship.view.WelcomeStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class WelcomeController {
+/**
+ * Controller for the Welcome screen in the Battleship game.
+ * This class manages the UI components and interactions for the welcome stage,
+ * including buttons, choice boxes, background images, and sounds.
+ *
+ * <p>Authors: Nicolás Córdoba, Samuel Arenas, Juan Manuel Ampudia</p>
+ */
 
+public class WelcomeController {
     @FXML
     private Button btnContinue;
-    @FXML
-    private Button btnNewGame;
-    @FXML
-    private Button btnOptions;
-    @FXML
-    private Button btnCredits;
-    @FXML
-    private Button btnQuitGame;
 
     @FXML
     private ImageView img1;
+
     @FXML
-    private ImageView img2;
-    @FXML
-    private ImageView img3;
+    private Button btnCredits;
+
     @FXML
     private ImageView img4;
+
+    @FXML
+    private Button btnNewGame;
+
+    @FXML
+    private ImageView img2;
+
+    @FXML
+    private Button btnOptions;
+
+    @FXML
+    private ImageView img3;
+
+
+    @FXML
+    private Button btnQuitGame;
+
     @FXML
     private ImageView img5;
 
     @FXML
     private BorderPane welcomeBorderPane;
+
     @FXML
     private ChoiceBox<String> choiceBox;
+
     @FXML
     private ImageView imgCharacter;
 
@@ -49,10 +72,12 @@ public class WelcomeController {
 
     private PlainTextFileHandler plainTextFileHandler;
 
+
     @FXML
     public void initialize() {
         plainTextFileHandler = new PlainTextFileHandler();
-        // Configura la imagen de fondo para la pantalla de bienvenida
+
+        // Sets the background image for the welcome screen.
         Image backgroundImage = new Image(getClass().getResource("/com/example/miniproyecto3_battleship/Image/background_game.png").toExternalForm());
         BackgroundImage background = new BackgroundImage(
                 backgroundImage,
@@ -63,61 +88,66 @@ public class WelcomeController {
         );
         welcomeBorderPane.setBackground(new Background(background));
 
-        // Configura los personajes en el ChoiceBox
-        choiceBox.getItems().addAll(
-                "Thrall", "Jaina Proudmoore", "Sylvanas Windrunner", "Anduin Wrynn", "Gul'dan", "Illidan Stormrage"
-        );
-        choiceBox.setValue("Thrall"); // Establece un valor predeterminado
+        // Populates the choice box with character options and sets the default selection.
+        choiceBox.getItems().addAll("Thrall", "Jaina Proudmoore", "Sylvanas Windrunner", "Anduin Wrynn", "Gul'dan", "Illidan Stormrage");
+        selectionCharacter("Thrall");
 
-        // Configura las acciones para cada botón
-        btnContinue.setOnAction(this::onHandleContinueGame);
-        btnOptions.setOnAction(this::onHandleOptions);
-        btnCredits.setOnAction(this::onHandleCredits);
-        btnQuitGame.setOnAction(this::onHandleQuitGame);
-
-        // Agrega un listener al cambio de selección del ChoiceBox
+        // Adds a listener to the choice box to play a sound and update the character selection on change.
         choiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectionCharacter(newValue);  // Actualiza la imagen del personaje cuando se selecciona uno nuevo
+            selectionCharacter(newValue);
         });
+
+        // Applies hover styles to buttons and checks for saved game files.
+        btnHoverStyle(btnContinue, 1);
+        btnHoverStyle(btnNewGame, 2);
+        btnHoverStyle(btnOptions, 3);
+        btnHoverStyle(btnCredits, 4);
+        btnHoverStyle(btnQuitGame, 5);
+
+        doesExist("game.ser");
+
     }
 
-    // Método para actualizar la imagen del personaje basado en la selección
-    private void selectionCharacter(String selectedCharacter) {
-        Image characterImage = null;
+    /**
+     * Updates the displayed character image and name based on the selected value.
+     *
+     * <p>Loads specific character images and assigns the appropriate image and name to the {@code imgCharacter} and {@code nameCharacter} properties
+     * based on the input string.</p>
+     *
+     * @param newValue the name of the selected character, as chosen from the {@code ChoiceBox}.
+     */
 
-        switch (selectedCharacter) {
-            case "Thrall":
-                characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character1.png")));
-                break;
-            case "Jaina Proudmoore":
-                characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character2.png")));
-                break;
-            case "Sylvanas Windrunner":
-                characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character3.png")));
-                break;
-            case "Anduin Wrynn":
-                characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character4.png")));
-                break;
+    private void selectionCharacter(String newValue) {
+
+        Image character1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character1.png")));
+        Image character2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character2.png")));
+        Image character3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character3.png")));
+        Image character4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character4.png")));
+        Image character5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character5.png")));
+        Image character6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/character6.png")));
+
+        if ( newValue == "Thrall") {
+            imgCharacter.setImage(character1);
+            nameCharacter = "Thrall";
+        }else if (newValue == "Jaina Proudmoore") {
+            imgCharacter.setImage(character2);
+            nameCharacter = "Jaina Proudmoore";
+        }else if (newValue == "Sylvanas Windrunner") {
+            imgCharacter.setImage(character3);
+            nameCharacter = "Sylvanas Windrunner";
+        } else if (newValue == "Anduin Wrynn") {
+            imgCharacter.setImage(character4);
+            nameCharacter = "Anduin Wrynn";
+        }else if (newValue == "Gul'dan") {
+            imgCharacter.setImage(character5);
+            nameCharacter = "Gul'dan";
         }
-
-        if (characterImage != null) {
-            imgCharacter.setImage(characterImage);  // Establece la nueva imagen en el ImageView
-        } else {
-            System.out.println("Error: Imagen para " + selectedCharacter + " no encontrada.");
+        else if (newValue == "Illidan Stormrage") {
+            imgCharacter.setImage(character6);
+            nameCharacter = "Illidan Stormrage";
         }
     }
 
-    // Acción para el botón "Continuar"
-    @FXML
-    private void onHandleContinueGame(ActionEvent event) {
-        String selectedCharacter = choiceBox.getValue();
-        System.out.println("Seleccionaste el personaje: " + selectedCharacter);
-        // Aquí podrías agregar la lógica para continuar el juego con el personaje seleccionado
-        // Por ejemplo, cargar el progreso guardado y continuar con la etapa del juego
-        // GameStage.getInstance(); // Pasar a la siguiente pantalla de juego
-    }
-
-    // Acción para el botón "Nuevo Juego"
     @FXML
     public void onHandlePlayGame(javafx.event.ActionEvent actionEvent) throws IOException {
         plainTextFileHandler.writeToFile("character.txt", nameCharacter + "," + " " + "," + "0");
@@ -126,21 +156,19 @@ public class WelcomeController {
 
     }
 
-    // Acción para el botón "Opciones"
-    @FXML
-    private void onHandleOptions(ActionEvent event) {
-        System.out.println("Abrir opciones...");
-        // Aquí deberías agregar la lógica para abrir una pantalla de opciones
-        // Por ejemplo, mostrar una ventana con opciones de configuración del juego (como sonido, dificultad, controles)
+    public void doesExist(String path){
+        File file = new File(path);
+        if(file.exists()){
+            btnContinue.setDisable(false);
+        }else{
+            btnContinue.setDisable(true);
+        }
     }
 
-    // Acción para el botón "Créditos"
+
     @FXML
-    private void onHandleCredits(ActionEvent event) {
+    public void onHandleCredits(ActionEvent event){
         System.out.println("Mostrar créditos...");
-        // Aquí deberías mostrar una ventana con los créditos del juego
-        // Puedes usar un `Alert` o crear una nueva ventana que muestre los nombres de los desarrolladores
-        // Ejemplo de cómo podrías hacerlo:
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Créditos");
         alert.setHeaderText("Desarrollado por:");
@@ -148,16 +176,59 @@ public class WelcomeController {
         alert.showAndWait();
     }
 
-    // Acción para el botón "Salir del juego"
     @FXML
-    private void onHandleQuitGame(ActionEvent event) {
-        System.out.println("Salir del juego...");
-        // Lógica para salir del juego o cerrar la ventana
-        Stage stage = (Stage) btnQuitGame.getScene().getWindow();
-        stage.close();  // Cierra la ventana del juego
+    void onHandleContinueGame(ActionEvent event) throws IOException {
+        WelcomeStage.deleteInstance();
+        GameStage.getInstance().getGameController().Continue();
+    }
+
+
+    @FXML
+    public void onHandleQuitGame(javafx.event.ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void btnHoverStyle(Button button, int i) {
+        button.setOnMouseEntered(mouseEvent -> {
+            switch (i) {
+                case 1:
+                    img1.setOpacity(1);
+                    break;
+                case 2:
+                    img2.setOpacity(1);
+                    break;
+                case 3:
+                    img3.setOpacity(1);
+                    break;
+                case 4:
+                    img4.setOpacity(1);
+                    break;
+                case 5:
+                    img5.setOpacity(1);
+                    break;
+            }
+        });
+        button.setOnMouseExited(mouseEvent -> {
+            switch (i) {
+                case 1:
+                    img1.setOpacity(0);
+                    break;
+                case 2:
+                    img2.setOpacity(0);
+                    break;
+                case 3:
+                    img3.setOpacity(0);
+                    break;
+                case 4:
+                    img4.setOpacity(0);
+                    break;
+                case 5:
+                    img5.setOpacity(0);
+                    break;
+            }
+        });
     }
 }
-
 
 
 

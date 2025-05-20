@@ -38,10 +38,10 @@ public class GameStage extends Stage {
         private static GameStage INSTANCE;
     }
 
+
     public GameController getGameController() {
         return gameController;
     }
-
 
     public static GameStage getInstance() throws IOException {
         GameStage.GameStageHolder.INSTANCE =

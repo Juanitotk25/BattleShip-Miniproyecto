@@ -3,7 +3,6 @@ package com.example.miniproyecto3_battleship.controller;
 import com.example.miniproyecto3_battleship.model.Player.PlayerBot;
 import com.example.miniproyecto3_battleship.model.Player.PlayerPerson;
 import com.example.miniproyecto3_battleship.model.Game.Game;
-import com.example.miniproyecto3_battleship.model.Serializable.ISerializableFileHandler;
 import com.example.miniproyecto3_battleship.model.planeTextFile.PlainTextFileHandler;
 import com.example.miniproyecto3_battleship.model.Serializable.Save;
 import com.example.miniproyecto3_battleship.model.Serializable.SerializableFileHandler;
@@ -46,6 +45,8 @@ public class GameController implements Serializable {
     private PlayerBot playerBot;
     private PlayerPerson playerPerson;
     private final SerializableFileHandler serializableFileHandler = new SerializableFileHandler();
+
+
 
     @FXML
     private GridPane gridPaneGame;
@@ -91,7 +92,7 @@ public class GameController implements Serializable {
 
     private Image image;
     private ImagePattern imagePatter;
-    private Image expls = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto_3_battlership/Image/explosion.png")));
+    private Image expls = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/explosion.png")));
     ImagePattern imagePattern = new ImagePattern(expls);
 
     private String nameCharacterActual;
@@ -102,9 +103,7 @@ public class GameController implements Serializable {
 
     private PlainTextFileHandler plainTextFileHandler;
 
-    //Metodo de inicialización del stage y su correspondiente asignacion de fondo y demás
     public void initialize() {
-
         rowBot = 0;
         columnbot = 0;
 
@@ -129,12 +128,10 @@ public class GameController implements Serializable {
         );
 
         gameBorderPane.setBackground(new Background(background));
-
     }
 
-    //este metodo hace que setea las grillas del bot y el usuario que seleccióno los barcos
-    //además serializa el estatus del juego y guarda los datos para un uso futuro
     public void setGridPaneShips(ArrayList<int[]> shipsPositions, int[][] shipsSelected) {
+        animationIn();
 
         game = new Game();
         playerBot = game.getPlayerBot();
@@ -163,10 +160,6 @@ public class GameController implements Serializable {
         createEnemyShadows();
     }
 
-
-    //organiza el ambiente del jugador y el bot de donde lo dejaron en la ultima sesion registrada
-    //por esas las lineas de deserialización en los archivos save.ser y game.ser
-    //restaura los barcos del bot y jugador donde estaban
     public void Continue() {
         save = (Save) serializableFileHandler.deserialize("save.ser");
         game = (Game) serializableFileHandler.deserialize("game.ser");
@@ -183,8 +176,7 @@ public class GameController implements Serializable {
         loadGridPaneGame();
     }
 
-    //este metodo setea las grillas para el juego, ajustando los barcos y su posicionamiento
-    //ajusta tambien las celdas para que se adecuen correctamente los barcos en su orientación correcta
+
     public void createGridPaneGame() {
         double cellWidth = 63.7;
         double cellHeight = 63.7;
@@ -219,10 +211,6 @@ public class GameController implements Serializable {
 
     }
 
-
-    //este metodo extrae la orientación, tamaño y posición de cada barco
-    //devuelve las caracteristicas anteriores en forma de una lista de barcos
-    //y la info es retornada como lista de arreglos enteros donde cada array es info de un barco
     public ArrayList<int[]> shipPositions(ArrayList<Ship> ships) {
         ArrayList<int[]> shipInfo = new ArrayList<>();
         for (int i = 0; i < ships.size(); i++) {
@@ -237,8 +225,6 @@ public class GameController implements Serializable {
         return shipInfo;
     }
 
-    // este metodo itera a traves de la lista de los barcos enemigos y cambia
-    //el estatus de la visibilidad de un barco si no son destruidos, usa el metodo isDestroyed
     @FXML
     public void onHandlePutEnemyShips() {
         for (int i = 0; i < enemyShips.size(); i++) {
@@ -248,13 +234,10 @@ public class GameController implements Serializable {
         }
     }
 
-    //asigna un enemigo random de la lista de nombres y una de las dos imagenes para enemigos
-    //se utilizan solos dos imagenes para no ocupar mas espacio en el proyecto
-    //además serializa y guarda los datos para que se guarde el juego
     public void setEnemy() {
         if (Objects.equals(nameEnemyActual, " ")) {
-            String[] enemys = {"Gul'dan", "Arthas", "Illidan", "Kill'jaeden"};
-            nameEnemyActual = enemys[(int) (Math.random() * 3)];
+            String[] enemys = {"Zarok", "Varek", "Drakk", "Korr", "Morth", "Tharn", "Vulkar", "Grim", "Raek", "Durn"};
+            nameEnemyActual = enemys[(int) (Math.random() * 9)];
             lbNameVillain.setText(nameEnemyActual);
             imageEnemyActual = (int) (Math.random() * 2);
             plainTextFileHandler.writeToFile("character.txt", nameCharacterActual + "," + nameEnemyActual + "," + imageEnemyActual);
@@ -269,7 +252,6 @@ public class GameController implements Serializable {
 
     }
 
-    //este metodo es como el setEnemy solo que aplica para el setChracter del usuario, es decir
     public void setCharacter() {
 
         Image imageCharacterActual;
@@ -299,11 +281,6 @@ public class GameController implements Serializable {
         }
     }
 
-
-    //este metodo se encarga del status de una celda de la grilla cuando el jugador dispara
-    // si pega a un parte del barco, la celda se actualiza con un simbolo de exito y sigue turno usuario
-    //si falla el tiro, se pone un simbolo de eror en la casilla y es turno del bot
-    //tambien chequea si un barco es destruido y actualiza el status del juego
     public void onHandleMouseClickedShips(int row, int column) {
         row += 1;
         column += 1;
@@ -315,7 +292,7 @@ public class GameController implements Serializable {
             enemyShadow[row - 1][column - 1].setOnMouseExited(null);
             enemyShadow[row - 1][column - 1].setStyle("-fx-cursor: default;");
             if (matriz.get(row - 1).get(column - 1) != 0) {
-                infoLabel.setText("Felicidades, atinaste, tira nuevamente! ");
+                infoLabel.setText("Felicidad capitan le atinaste, tira nuevamente! ");
                 gridPaneGame.add(successSymbol(), column, row);
                 playerBot.changeMatrix(row - 1, column - 1, -1);
                 PauseTransition pause = new PauseTransition(Duration.seconds(.5));
@@ -326,7 +303,7 @@ public class GameController implements Serializable {
                 playerTurn();
                 defeat((game.verifyWinner(playerBot)));
             } else {
-                infoLabel.setText("Sos muy malo, deja a tu oponente atacar");
+                infoLabel.setText("Oh fallaste, deja a tu openete atacar");
                 gridPaneGame.add(errorSymbol(), column, row);
                 playerTurn();
                 playerBot.changeMatrix(row - 1, column - 1, 2);
@@ -338,12 +315,9 @@ public class GameController implements Serializable {
             }
         }
         DestroyedShip(row, column);
+
     }
 
-
-    //Este metodo revisa y chequea si un barco ha sido destruido revisando sus partes
-    //si es destruido, actualiza la grilla y refleja con un efecto que el barco fue destruido
-    //tambien guarda el status del juego y datos
     public void DestroyedShip(int row, int column){
         int rowSelected;
         int columnSelected;
@@ -387,8 +361,6 @@ public class GameController implements Serializable {
         victory(game.verifyWinner(playerBot));
     }
 
-    //este metodo actualiza la imagen de cuando golpea un barco
-    //setea la imagen de un personaje de fuego
     public Group destroyerFlame(){
         Polygon flame = new Polygon();
         flame.getPoints().addAll(25.0, 0.0,   // Punta superior de la llama
@@ -420,9 +392,7 @@ public class GameController implements Serializable {
         return group;
     }
 
-    //carga los barcos del jugador en la UI e itera a traves de la matrix del jugador
-    //un valor de 2 es que falló y actualiza con error
-    // un valor de -1 es que atacó correctamente y llama al metodo DestroyedEnemyShip
+
     public void loadGridPaneShips() {
         matriz = playerPerson.getMatrix();
         for (int i = 0; i < 10; i++) {
@@ -437,9 +407,6 @@ public class GameController implements Serializable {
         loadDestroyedEnemyShip();
     }
 
-    //este metodo chequea si todas las partes de un barco han sido destruidas y actualiza
-    //la grilla reflejando la destruccion del barco,tambien el barco es removido de la lista
-    // de barcos
     public void loadDestroyedEnemyShip() {
         int rowSelected;
         int columnSelected;
@@ -462,7 +429,7 @@ public class GameController implements Serializable {
             if (isDestroyed) {
                 playerShips.get(k).setVisible(true);
                 playerShips.get(k).setIsDestroyed(true);
-                infoLabel.setText("Por fin destruiste un barco!");
+                infoLabel.setText("¡Has destruido un barco enemigo!");
                 for (int j = 0; j < playerShips.get(k).getSize(); j++) {
 
                     if (playerShips.get(k).isHorizontal()) {
@@ -476,10 +443,6 @@ public class GameController implements Serializable {
         }
     }
 
-
-    //Setea la grilla y posiciona los barcos para el bot mostrando el estado de barcos enemigos
-    //funciona igual que el anterior, mostrando -1 si acertó y 2 si falló, tambien llama al metodo
-    //loadDestroyedShip y deshabilita los listeners con casillas que han sido acertadas o al revés
     public void loadGridPaneGame() {
         matriz = playerBot.getMatrix();
         for (int i = 0; i < 10; i++) {
@@ -500,9 +463,6 @@ public class GameController implements Serializable {
         loadDestroyedShip();
     }
 
-    //este metodo funciona igual que el del usuario, itera sobre todas las partes del barco
-    //si todas han sido golpeadas, actualiza la grilla con un efecto de destrucción y saca el barco
-    //de la lista de barcos del bot
     public void loadDestroyedShip() {
         int rowSelected;
         int columnSelected;
@@ -525,7 +485,7 @@ public class GameController implements Serializable {
             if (isDestroyed) {
                 enemyShips.get(k).setVisible(true);
                 enemyShips.get(k).setIsDestroyed(true);
-                infoLabel.setText("Buena, destruiste un barco enemigo!");
+                infoLabel.setText("¡Has destruido un barco enemigo!");
                 for (int j = 0; j < enemyShips.get(k).getSize(); j++) {
                     if (enemyShips.get(k).isHorizontal()) {
                         gridPaneGame.add(destroyerFlame(), columnSelected + 1 - j, rowSelected + 1);
@@ -538,18 +498,13 @@ public class GameController implements Serializable {
         }
     }
 
-    //se encarga de que el usuario solo tenga un turno y luego pase al enemigo
-    //eso si, tiene solo uno si acierta mal, si acierta bien sigue
     public void playerTurn() {
         gridPaneGame.setDisable(!gridPaneGame.isDisable());
     }
 
-    //esto simula el ataque del bot, si falla cede el turno al otro, si
-    //acierta sigue atacando, además ejecuta una pausa minima para mejorar la experiencia
-    //del jugador simulando mucho mejor
     @FXML
     void botAttack() {
-        infoLabel.setText("Chat gpt esta pensando...");
+        infoLabel.setText("La maquina esta pensando...");
         playerBot.generatePositionRandom(playerPerson.getMatrix());
         rowBot = playerBot.getPositionRandom()[0];
         columnbot = playerBot.getPositionRandom()[1];
@@ -563,7 +518,7 @@ public class GameController implements Serializable {
             defeat((game.verifyWinner(playerPerson)));
             PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
             pause.setOnFinished(event2 -> {
-                infoLabel.setText("Chat gpt esta pensando...");
+                infoLabel.setText("La maquina esta pensando...");
                 botAttack();
             });
             pause.play();
@@ -579,11 +534,9 @@ public class GameController implements Serializable {
             pause.play();
         }
         destroyedEnemyShip();
+
     }
 
-
-    //actualiza el status del juego luego de que un barco ha sido destruido
-    //añade efectos visuales y ademas quita al barco de la lista de barcos
     public void destroyedEnemyShip() {
         int rowSelected;
         int columnSelected;
@@ -625,9 +578,6 @@ public class GameController implements Serializable {
         serializableFileHandler.serialize("game.ser", game);
     }
 
-
-    //crea el simbolo que representa el error si fallá un tiro en la grilla
-    //se crea una x y se retorna en un contenedor haciendo asi la X con formato y color rojo
     public Group errorSymbol() {
         Group group = new Group();
         Polygon xShape = new Polygon(
@@ -665,7 +615,6 @@ public class GameController implements Serializable {
     }
 
 
-    //Hace lo mismo que el simbolo de error, solo que este actualiza con el icono de una bala de cañon
     public Group successSymbol() {
         Group group = new Group();
         Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/bombfx.png")));
@@ -705,15 +654,13 @@ public class GameController implements Serializable {
         return group;
     }
 
-    // este metodo es el que chequea mediante booleano si el jugador gano o no
-    //tmb actualiza los archivos y datos del juego en el guardado
     public void victory(boolean victory) {
         if (victory) {
-            infoLabel.setText("buena manito, ganaste por fin");
+            infoLabel.setText("¡Felicidades! Has ganado");
             gridPaneGame.setDisable(true);
             Path path = Paths.get("game.ser");
             Path path2 = Paths.get("save.ser");
-
+            playVideoVictory();
             try {
                 Files.delete(path);
                 Files.delete(path2);
@@ -724,14 +671,29 @@ public class GameController implements Serializable {
         }
     }
 
-    //funciona igual que el anterior método solo que arroja mensaje de derrota
+    private void playVideoVictory() {
+        // Avanzo directamente: borro la instancia de GameStage
+        try {
+            GameStage.deleteInstance();
+        } catch (NullPointerException e2) {
+            System.out.println("No se pudo borrar la instancia");
+        }
+
+        // Abro la ventana de bienvenida
+        try {
+            WelcomeStage.getInstance();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void defeat(boolean defeat) {
         if (defeat) {
             infoLabel.setText("Has perdido ;(");
             gridPaneGame.setDisable(true);
             Path path = Paths.get("game.ser");
             Path path2 = Paths.get("save.ser");
-
+            playVideoDefeat();
             try {
                 Files.delete(path);
                 Files.delete(path2);
@@ -743,13 +705,52 @@ public class GameController implements Serializable {
         }
     }
 
+    private void playVideoDefeat() {
+        // Cierro la ventana de juego
+        GameStage.deleteInstance();
 
-    //crea sombras sobre los barcos enemigos, permitiendo al usuario interactuar con las casillas
-    //el mouse subrayando la celda correspondiente
+        // Abro la ventana de bienvenida
+        try {
+            WelcomeStage.getInstance();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void animationIn() {
+
+        anchorPaneLeft.setTranslateX(-400);
+
+        double screenWidth = Screen.getPrimary().getBounds().getWidth();
+        anchorPaneMiddle.setTranslateY(screenWidth);
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.9), anchorPaneLeft);
+        fadeIn.setFromValue(0.5);
+        fadeIn.setToValue(1.0);
+
+        TranslateTransition moveLeft = new TranslateTransition(Duration.seconds(2), anchorPaneLeft);
+        moveLeft.setToX(0);
+
+        ParallelTransition newStageTransition = new ParallelTransition(fadeIn, moveLeft);
+        newStageTransition.play();
+
+        FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(2.5), anchorPaneMiddle);
+        fadeIn2.setFromValue(0.2);
+        fadeIn2.setToValue(1.0);
+
+        TranslateTransition moveUp = new TranslateTransition(Duration.seconds(3), anchorPaneMiddle);
+        moveUp.setFromY(screenWidth);
+        moveUp.setToY(0);
+
+        ParallelTransition newStageTransition2 = new ParallelTransition(fadeIn2, moveUp);
+        newStageTransition2.play();
+    }
+
+
     public void createEnemyShadows() {
         double cellWidth = 63.7;
         double cellHeight = 63.7;
-        gridPaneGame.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto_3_battlership/Css/css.css")).toExternalForm());
+        gridPaneGame.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/example/miniproyecto3_battleship/Css/css.css")).toExternalForm());
         enemyShips = playerBot.getEnemyShips();
         auxEnemyShips = new ArrayList<>(enemyShips);
         for (int i = 0; i < enemyShips.size(); i++) {
@@ -785,25 +786,25 @@ public class GameController implements Serializable {
                 gridPaneGame.add(enemyShadow[rows - 1][col - 1], col, rows);
             }
         }
+
     }
 
-    //este mewtodo es cuando el usuario se ubica sobre una celda enemiga y asi subrayarla con
-    //la sombra enemiga disparando ese evento
+
     public void onHandleMouseEnteredShips(int row, int col) {
 
         enemyShadow[row][col].setFill(imagePatter);
     }
 
-    //funciona igual que el anterior metodo pero cuando el usuario deja de marcar una caislla
-    //enemiga entonces la devuelve a transparente
+
     public void onHandleMouseExitedShips(int row, int col) {
         Color colorDefault = Color.TRANSPARENT;
         enemyShadow[row][col].setFill(colorDefault);
     }
 
+
     @FXML
     public void onHandleMouseEnteredeShowEnemyShips(javafx.scene.input.MouseEvent mouseEvent) {
-        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/ButtonHoverShowEnemyShips.png")));
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/buttonHoverShowEnemyShips.png")));
         ImageInput imageInput = new ImageInput(newImage);
         btnShowEnemyShips.setEffect(imageInput);
     }
@@ -821,11 +822,12 @@ public class GameController implements Serializable {
         GameSelectionStage.getInstance();
     }
 
+
     @FXML
     public void onHandleReturn(javafx.event.ActionEvent actionEvent) throws IOException {
+        playerBot.showMatrix();
         GameStage.deleteInstance();
         WelcomeStage.getInstance();
     }
-
 
 }
