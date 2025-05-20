@@ -26,20 +26,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-/**
- * Controller class for the game selection screen in the Battleship game.
- *
- * <p>This class handles the initialization of the game selection UI and the interactions
- * related to selecting ships. It manages the visual representation of ships and their
- * placement on the game grid. The game selection includes background music, custom UI
- * elements, and ship selection functionality. The class is responsible for setting up
- * the game interface, handling ship selection, and updating relevant information for the
- * player.</p>
- *
- * @author Nicolás Córdoba
- * @autor Samuel Arenas,
- * @author Juan Manuel Ampudia
- */
+
 public class GameSelectionController {
 
     @FXML
