@@ -229,8 +229,8 @@ public class Destructor extends Ship {
         shapesGroup.setEffect(glow);
         shapesGroup.setStyle("-fx-cursor: hand");
 
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.9);
+        shapesGroup.setScaleY(0.9);
         shapesGroup.getChildren().addAll(rectangle1, line1, quadCurve1, line2, quadCurve2, rectangle2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, rectangle3, rectangle4, rectangle5, rectangle6, rectangle7, rectangle8, rectangle9, rectangle10, rectangle11, rectangle12, rectangle13, rectangle14);
         this.getChildren().add(shapesGroup);
         isSelect = false;

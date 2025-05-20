@@ -246,13 +246,13 @@ public class Portaaviones extends Ship {
         shapesGroup.setStyle("-fx-cursor: hand");
         shapesGroup.setLayoutX(10);
         shapesGroup.setLayoutY(2);
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.8);
+        shapesGroup.setScaleY(0.8);
 
         shapesGroup.getChildren().addAll(portaavionesShape1, portaavionesShape2, portaavionesShape3, portaavionesShape4,portaavionesShape5, portaavionesShape6,portaavionesShape7, portaavionesShape8, portaavionesShape9, portaavionesShape10, portaavionesShape11, portaavionesShape12, portaavionesShape13, portaavionesShape14);
 
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.8);
+        shapesGroup.setScaleY(0.8);
         this.getChildren().add(shapesGroup);
         isSelect = false;
         size = 4;

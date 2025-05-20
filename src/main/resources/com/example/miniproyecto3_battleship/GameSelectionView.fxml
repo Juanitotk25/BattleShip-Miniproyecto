@@ -19,7 +19,7 @@
 
 <BorderPane fx:id="gameBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onHandleBorderPaneKeyTyped" prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miniproyecto3_battleship.controller.GameSelectionController">
     <right>
-        <AnchorPane fx:id="anchorPaneLeft" prefHeight="1080.0" prefWidth="576.0" BorderPane.alignment="CENTER">
+        <AnchorPane fx:id="anchorPaneLeft" prefHeight="1000.0" prefWidth="681.0" BorderPane.alignment="CENTER">
             <children>
                 <VBox fx:id="shipSelectVbox" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="272.0" layoutY="249.0" prefHeight="575.0" prefWidth="379.0" spacing="25.0" style="-fx-background-color: rgba(15, 47, 66,0.5); -fx-border-color: #6a767f; -fx-border-width: 3; -fx-border-radius: 15; -fx-background-radius: 15;">
                     <children>
@@ -73,10 +73,10 @@
         </AnchorPane>
     </right>
     <left>
-        <AnchorPane prefHeight="1080.0" prefWidth="431.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="1000.0" prefWidth="456.0" BorderPane.alignment="CENTER">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f2f42" height="48.0" layoutX="27.0" layoutY="70.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="202.0" />
-                <Label fx:id="nameCharacter" layoutX="25.0" layoutY="77.0" prefHeight="34.0" prefWidth="234.0" text="Coronel Sander" textFill="WHITE">
+                <Label fx:id="nameCharacter" layoutX="46.0" layoutY="77.0" prefHeight="34.0" prefWidth="234.0" text="Thrall" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
@@ -86,7 +86,7 @@
                         <Image url="@Image/character1.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="25.0" layoutY="453.0" mnemonicParsing="false" onAction="#onHandleStartGame" prefHeight="56.0" prefWidth="206.0" style="-fx-background-color: #7D3434; -fx-border-radius: 30; -fx-background-radius: 70; -fx-border-width: 3; -fx-border-color: #373F51;" styleClass="buttonRed" stylesheets="@Css/css.css" text="Flota Lista!" textFill="WHITE">
+                <Button layoutX="25.0" layoutY="453.0" mnemonicParsing="false" onAction="#onHandleStartGame" prefHeight="56.0" prefWidth="206.0" style="-fx-background-color: #7D3434; -fx-border-radius: 30; -fx-background-radius: 70; -fx-border-width: 3; -fx-border-color: #373F51;" styleClass="buttonRed" stylesheets="@Css/css.css" text="Continuar" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="30.0" />
                     </font>
@@ -94,7 +94,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button alignment="CENTER" layoutX="18.0" layoutY="545.0" mnemonicParsing="false" onAction="#onHandleReturn" prefHeight="65.0" prefWidth="219.0" styleClass="buttonReturn" stylesheets="@Css/css.css" text="Abandonar flota" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="18.0" layoutY="545.0" mnemonicParsing="false" onAction="#onHandleReturn" prefHeight="65.0" prefWidth="219.0" styleClass="buttonReturn" stylesheets="@Css/css.css" text="Volver" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                     </font>
@@ -242,14 +242,14 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </GridPane>
-                <Rectangle fx:id="rectangleLabelSelection" arcHeight="5.0" arcWidth="5.0" fill="#7d3434" height="66.0" layoutX="111.0" layoutY="63.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="323.0" />
-                <Label fx:id="lbSelecction" layoutX="135.0" layoutY="74.0" prefHeight="44.0" prefWidth="276.0" text="Selecciona tu flota" textFill="WHITE">
+                <Rectangle fx:id="rectangleLabelSelection" arcHeight="5.0" arcWidth="5.0" fill="#7d3434" height="66.0" layoutX="258.0" layoutY="63.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" width="323.0" />
+                <Label fx:id="lbSelecction" layoutX="282.0" layoutY="74.0" prefHeight="44.0" prefWidth="276.0" text="Selecciona tu flota" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="35.0" />
                     </font>
                 </Label>
                 <Rectangle fx:id="rectangleLabelInfo" arcHeight="5.0" arcWidth="5.0" fill="#00000066" height="63.0" layoutX="100.0" layoutY="860.0" stroke="#6a767f" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="482.0" />
-                <Label fx:id="infoLabel" alignment="CENTER" layoutX="119.0" layoutY="856.0" prefHeight="70.0" prefWidth="489.0" textFill="WHITE">
+                <Label fx:id="infoLabel" alignment="CENTER" layoutX="114.0" layoutY="821.0" prefHeight="70.0" prefWidth="489.0" textFill="WHITE">
                     <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                     </font>

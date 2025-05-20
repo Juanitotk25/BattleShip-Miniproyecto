@@ -121,14 +121,14 @@ public class Submarino extends Ship {
         shapesGroup.setStyle("-fx-cursor: hand");
         shapesGroup.setLayoutX(10);
         shapesGroup.setLayoutY(2);
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.9);
+        shapesGroup.setScaleY(0.9);
 
         shapesGroup.getChildren().addAll(ellipse, rectangle1, polygon1, rectangle2, polygon2, rectangle3,
                 circle, line1, line2, rectangle4, rectangle5, quadCurve1, quadCurve2);
 
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.9);
+        shapesGroup.setScaleY(0.9);
         this.getChildren().add(shapesGroup);
         isSelect = false;
         size = 3;

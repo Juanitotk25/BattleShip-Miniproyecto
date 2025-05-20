@@ -88,8 +88,8 @@ public class Fragata extends Ship {
         shapesGroup.setStyle("-fx-cursor: hand");
         shapesGroup.setLayoutX(0);
         shapesGroup.setLayoutY(2);
-        shapesGroup.setScaleX(1.1);
-        shapesGroup.setScaleY(1.1);
+        shapesGroup.setScaleX(0.9);
+        shapesGroup.setScaleY(0.9);
 
         shapesGroup.getChildren().addAll(fragataShape1, fragataShape2, fragataShape3,fragataShape4 );
 
