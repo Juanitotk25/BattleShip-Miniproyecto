@@ -19,13 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-/**
- * Controller for the Welcome screen in the Battleship game.
- * This class manages the UI components and interactions for the welcome stage,
- * including buttons, choice boxes, background images, and sounds.
- *
- * <p>Authors: Nicolás Córdoba, Samuel Arenas, Juan Manuel Ampudia</p>
- */
 
 public class WelcomeController {
     @FXML
