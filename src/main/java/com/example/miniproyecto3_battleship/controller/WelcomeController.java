@@ -19,6 +19,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller for the Welcome screen in the Battleship game.
+ * This class manages the UI components and interactions for the welcome stage,
+ * including buttons, choice boxes, background images, and sounds.
+ *
+ * <p>Authors: Juan David Lopez Vanegas - cod 2243077
+ */
 
 public class WelcomeController {
     @FXML
@@ -65,6 +72,15 @@ public class WelcomeController {
 
     private PlainTextFileHandler plainTextFileHandler;
 
+    /**
+     * Initializes the WelcomeController.
+     * <p>
+     * This method sets up the background image, loads and plays the main music,
+     * initializes the sounds for button interactions, and populates the choice box
+     * with character options. It also applies hover styles to buttons and sets up
+     * event listeners for user interactions.
+     * </p>
+     */
 
     @FXML
     public void initialize() {
@@ -141,6 +157,17 @@ public class WelcomeController {
         }
     }
 
+    /**
+     * Handles the action of starting a new game when the play button is clicked.
+     * <p>
+     * Stops the main music, saves the selected character name to a file, and transitions
+     * from the Welcome Stage to the Game Selection Stage.
+     * </p>
+     *
+     * @param actionEvent the event triggered by clicking the "Play" button.
+     * @throws IOException if there is an issue transitioning to the {@code GameSelectionStage}.
+     */
+
     @FXML
     public void onHandlePlayGame(javafx.event.ActionEvent actionEvent) throws IOException {
         plainTextFileHandler.writeToFile("character.txt", nameCharacter + "," + " " + "," + "0");
@@ -148,6 +175,15 @@ public class WelcomeController {
         GameSelectionStage.getInstance();
 
     }
+
+    /**
+     * Checks if a file exists at the specified path and enables or disables the "Continue" button accordingly.
+     *
+     * <p>If the file exists, the "Continue" button is enabled, allowing the user to load a previous game.
+     * Otherwise, the button is disabled.</p>
+     *
+     * @param path the path to the file to check.
+     */
 
     public void doesExist(String path){
         File file = new File(path);
@@ -159,6 +195,13 @@ public class WelcomeController {
     }
 
 
+    /**
+     * Displays the credits dialog with the developers' names and associated actions.
+     *
+     * <p>The method initializes an alert of type {@code INFORMATION}</p>
+     *
+     * @param event the action event triggered when the "Credits" button is clicked.
+     */
     @FXML
     public void onHandleCredits(ActionEvent event){
         System.out.println("Mostrar créditos...");
@@ -169,17 +212,44 @@ public class WelcomeController {
         alert.showAndWait();
     }
 
+    /**
+     * Continues a previously saved game.
+     *
+     * <p>Closes the current {@code WelcomeStage} and initializes the {@code GameStage}, invoking the
+     * {@code Continue} method from the {@code GameController} to load the saved state.</p>
+     *
+     * @param event the action event triggered when the "Continue" button is clicked.
+     * @throws IOException if there is an error while initializing the {@code GameStage}.
+     */
     @FXML
     void onHandleContinueGame(ActionEvent event) throws IOException {
         WelcomeStage.deleteInstance();
         GameStage.getInstance().getGameController().Continue();
     }
 
+    /**
+     * Exits the application.
+     *
+     * <p>This method is triggered by the "Quit Game" button, terminating the program using {@code System.exit(0)}.</p>
+     *
+     * @param actionEvent the action event triggered when the "Quit Game" button is clicked.
+     */
 
     @FXML
     public void onHandleQuitGame(javafx.event.ActionEvent actionEvent) {
         System.exit(0);
     }
+
+
+    /**
+     * Adds hover effects and sounds to buttons in the welcome screen.
+     *
+     * <p>When the mouse hovers over a button, a sound is played and the opacity of an associated image increases.
+     * When the mouse leaves, the sound stops and the image opacity returns to its default state.</p>
+     *
+     * @param button the button to which the hover effect is applied.
+     * @param i the index corresponding to the button, used to identify the associated image.
+     */
 
     public void btnHoverStyle(Button button, int i) {
         button.setOnMouseEntered(mouseEvent -> {

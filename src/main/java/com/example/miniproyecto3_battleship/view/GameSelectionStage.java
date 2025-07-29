@@ -12,8 +12,24 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Represents the stage for selecting game options in the Battleship game.
+ * This stage is implemented using the Singleton design pattern to ensure that only one instance exists at any time.
+ *
+ *
+ * @author Juan David Lopez V
+ */
 public class GameSelectionStage extends Stage {
 
+    /**
+     * Initializes the game selection stage.
+     * <p>
+     * Loads the FXML file, sets up the scene, and configures the stage with specific dimensions and style.
+     * The stage is displayed as undecorated and occupies the full screen.
+     * </p>
+     *
+     * @throws IOException if there is an issue loading the FXML resource.
+     */
     public GameSelectionStage() throws IOException {
         // Cargar el FXML de la pantalla de selección de juego
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/miniproyecto3_battleship/gameSelectionView.fxml"));
@@ -44,11 +60,22 @@ public class GameSelectionStage extends Stage {
         show();
     }
 
+    /**
+     * Holds the singleton instance of the {@code GameSelectionStage}.
+     * This is a private static class to ensure lazy initialization and thread safety.
+     */
     private static class GameStageHolder {
         private static GameSelectionStage INSTANCE;
     }
 
-    // Metodo para obtener una instancia única de GameSelectionStage
+    /**
+     * Returns the singleton instance of the {@code GameSelectionStage}.
+     * <p>If the instance does not exist, it is created. Otherwise, the existing instance is returned.</p>
+     *
+     * @return the singleton instance of {@code GameSelectionStage}.
+     * @throws IOException if there is an issue creating the instance (e.g., loading the FXML resource).
+     */
+
     public static GameSelectionStage getInstance() throws IOException {
         GameSelectionStage.GameStageHolder.INSTANCE =
                 GameSelectionStage.GameStageHolder.INSTANCE != null ?
@@ -57,7 +84,10 @@ public class GameSelectionStage extends Stage {
     }
 
 
-    // Método para cerrar la instancia de GameSelectionStage
+    /**
+     * Deletes the singleton instance of the {@code GameSelectionStage}.
+     * <p>Closes the current stage and sets the instance reference to {@code null}.</p>
+     */
     public static void deleteInstance() {
         GameSelectionStage.GameStageHolder.INSTANCE.close();
         GameSelectionStage.GameStageHolder.INSTANCE = null;

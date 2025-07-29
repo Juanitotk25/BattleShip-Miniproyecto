@@ -11,8 +11,56 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Objects;
 
+/**
+ * Represents a "Destructor" ship in the game.
+ *
+ * <p>The {@code Destructor} class extends the abstract {@link Ship} class and defines
+ * a larger ship with complex geometrical and textured shapes. It uses multiple
+ * JavaFX shapes, including {@link Rectangle}, {@link Line}, and {@link QuadCurve},
+ * to construct the visual representation of the ship.</p>
+ *
+ * <p>The "Destructor" is characterized by its size of 2 and its detailed visual
+ * effects, including multiple textures, layout transformations, and drop shadow
+ * effects to enhance the ship's appearance in the game.</p>
+ *
+ * <p>Textures are applied from the following external resources:</p>
+ * <ul>
+ *     <li>{@code texture1.png}</li>
+ *     <li>{@code texture2.png}</li>
+ *     <li>{@code texture3.png}</li>
+ *     <li>{@code texture4.png}</li>
+ *     <li>{@code texture5.png}</li>
+ *     <li>{@code texture6.png}</li>
+ * </ul>
+ *
+ * <p>Note: Resource files are loaded using {@link Objects#requireNonNull(Object)}
+ * to prevent null pointer exceptions during runtime.</p>
+ *
+ * @author Juan David Lopez V
+ */
 public class Destructor extends Ship {
 
+    /**
+     * Constructs a new {@code Destructor} ship.
+     *
+     * <p>The constructor initializes the visual and functional properties of the "Destructor."
+     * It defines the ship's geometry using JavaFX shapes, including {@link Rectangle}, {@link Line},
+     * and {@link QuadCurve}, which are styled with color fills and textures.</p>
+     *
+     * <p>The ship's visual effects include scaling, rotation, and a glowing shadow to
+     * align with the game's visual standards. The size of the ship is set to 2,
+     * and its initial selection status is set to {@code false}.</p>
+     *
+     * <p>Key features include:</p>
+     * <ul>
+     *     <li>Geometrical composition with multiple shapes for a detailed appearance.</li>
+     *     <li>Textures and colors applied for visual distinction.</li>
+     *     <li>A drop shadow effect for enhanced visibility and interactivity.</li>
+     * </ul>
+     *
+     * <p>Shapes are added to a {@link javafx.scene.Group} called {@code shapesGroup},
+     * which organizes all visual components of the ship for rendering within the game's UI.</p>
+     */
     public Destructor() {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/miniproyecto3_battleship/Image/wow_texture2.png")));
         ImagePattern imagePattern = new ImagePattern(image);

@@ -1,0 +1,10 @@
+module:com.example.miniproyecto3_battleship
+com.example.miniproyecto3_battleship
+com.example.miniproyecto3_battleship.controller
+com.example.miniproyecto3_battleship.model.Exeption
+com.example.miniproyecto3_battleship.model.Game
+com.example.miniproyecto3_battleship.model.planeTextFile
+com.example.miniproyecto3_battleship.model.Player
+com.example.miniproyecto3_battleship.model.Serializable
+com.example.miniproyecto3_battleship.model.ships
+com.example.miniproyecto3_battleship.view

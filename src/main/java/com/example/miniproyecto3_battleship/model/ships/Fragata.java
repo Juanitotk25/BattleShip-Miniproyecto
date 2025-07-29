@@ -8,6 +8,21 @@ import javafx.scene.shape.Polygon;
 
 import java.util.Objects;
 
+
+/**
+ * Represents a "Fragata" ship in the game.
+ *
+ * <p>The {@code Fragata} class is a specific type of ship that inherits from the
+ * abstract {@link Ship} class. This class defines the visual representation of
+ * the "Fragata" using polygons with specific textures, scales, and effects.
+ * The "Fragata" has a size of 1 and is designed for gameplay as a small, agile
+ * ship.</p>
+ *
+ * <p>The class includes the creation and styling of the ship's visual elements,
+ * including texture application and shadow effects, to enhance the user's experience.</p>
+ *
+ * @author Juan David Lopez Vanegas
+ */
 public class Fragata extends Ship {
     public Fragata() {
 

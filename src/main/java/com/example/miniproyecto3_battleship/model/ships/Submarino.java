@@ -12,8 +12,30 @@ import javafx.scene.shape.*;
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Represents a Submarine ship in the Battleship game.
+ *
+ * <p>The {@code Submarino} class extends the {@code Ship} class and defines a submarine
+ * ship with a size of 3. The class sets up the ship's visual components, including
+ * shapes, colors, textures, and effects.</p>
+ *
+ * <p>The ship is represented by an ellipse for its body, various rectangles and polygons
+ * for additional details, and specific textures for each part of the ship. The submarine
+ * can be rotated, placed on the game board, and selected for interaction.</p>
+ */
 public class Submarino extends Ship {
 
+    /**
+     * Constructor for the Submarino (Submarine) class.
+     *
+     * <p>This constructor initializes the submarine's visual representation by creating
+     * and configuring different graphical elements such as ellipses, rectangles, polygons,
+     * circles, and lines. It applies texture images to these elements, sets their colors,
+     * and adds them to the ship's group.</p>
+     *
+     * <p>The ship's size is set to 3, and a glowing effect is applied to the ship's group to
+     * indicate its potential for selection. The ship's layout and scaling are also adjusted.</p>
+     */
     public Submarino() {
         this.setWidth(190);
         this.setHeight(63);

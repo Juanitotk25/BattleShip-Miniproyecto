@@ -7,6 +7,19 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Represents the bot player in the Battleship game.
+ *
+ * <p>The {@code PlayerBot} class extends {@code APlayer} and implements the bot's logic
+ * for generating its ships, attacking positions, and managing its state.</p>
+ *
+ * <p>The bot uses randomized strategies for ship placement and attacks while adhering to
+ * the game's rules. It also maintains information about its own and the enemy's ships.</p>
+ *
+ * <p>This class is serializable to allow saving and loading of game states.</p>
+ *
+ * @author Juan David Lopez V
+ */
 public class PlayerBot extends APlayer{
 
     int[] positionAttack = new int[2];

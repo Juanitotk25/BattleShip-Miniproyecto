@@ -13,8 +13,43 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Objects;
 
+/**
+ * Represents an "Aircraft Carrier" ship in the game.
+ *
+ * <p>The {@code Portaaviones} class extends the abstract {@link Ship} class and
+ * defines the largest ship with a size of 5. It consists of multiple geometric
+ * shapes and textures, creating a detailed and visually distinct representation
+ * of an aircraft carrier.</p>
+ *
+ * <p>The "Portaaviones" is visually styled with various textures and effects to
+ * enhance its appearance within the game. It uses a combination of shapes,
+ * including {@link Polygon}, {@link Rectangle}, and {@link Polyline}, arranged
+ * in a {@link javafx.scene.Group} for rendering.</p>
+ *
+ * <p>Textures are applied from external resource files:</p>
+ * <ul>
+ *     <li>{@code textureAircraftCarrier1.png}</li>
+ *     <li>{@code textureAircraftCarrier2.png}</li>
+ *     <li>{@code textureAircraftCarrier3.png}</li>
+ * </ul>
+ *
+ * @author Juan David Lopez V
+ */
 public class Portaaviones extends Ship {
 
+    /**
+     * Constructs a new {@code Portaaviones} ship.
+     *
+     * <p>The constructor initializes the "Aircraft Carrier" with the following properties:</p>
+     * <ul>
+     *     <li>A size of 4, representing its length in the game grid.</li>
+     *     <li>A complex structure composed of multiple shapes (e.g., {@link Polygon}, {@link Rectangle}).</li>
+     *     <li>Textures applied to distinguish the ship visually.</li>
+     *     <li>Drop shadow and color adjustment effects for visual enhancement.</li>
+     * </ul>
+     *
+     * <p>Shapes are added to a {@link javafx.scene.Group} called {@code shapesGroup} for rendering.</p>
+     */
     public Portaaviones() {
         Polygon portaavionesShape1 = new Polygon();
         Polygon portaavionesShape2 = new Polygon();
